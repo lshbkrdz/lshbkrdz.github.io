@@ -663,6 +663,22 @@ h3 {
   color: var(--muted);
 }
 
+.task-screenshot-preview {
+  display: grid;
+  align-content: start;
+}
+
+.task-screenshot-preview img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  object-position: left top;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(4, 8, 13, 0.62);
+}
+
 .uptime-ring {
   width: 128px;
   height: 128px;

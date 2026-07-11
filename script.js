@@ -18,19 +18,23 @@ const projectDetails = {
   },
   taskforge: {
     title: "TaskForge",
-    type: "Project and Issue Tracking Platform",
-    status: "Demo Application",
+    type: "Full-Stack Project and Issue Tracking Platform",
+    status: "Completed Portfolio Project",
     sections: {
       Problem: "Teams need a clear way to plan work, track bugs, discuss decisions, and see what changed without losing context across chats and documents.",
-      Solution: "TaskForge organizes work into workspaces, project boards, issues, priorities, comments, filters, search, notifications, and activity history so team context stays attached to the work item.",
-      Architecture: "A React and TypeScript client communicates with Django REST endpoints backed by PostgreSQL. Redis and Celery support notification delivery, async activity processing, and scheduled reminders.",
-      "Main features": ["User authentication", "Workspaces", "Project boards", "Issue creation", "Status management", "Priority levels", "Comments", "Activity history", "Filters", "Search", "Notifications"],
-      "Technology stack": "React, TypeScript, Django, PostgreSQL, REST API, Redis, Celery.",
-      "Technical decisions": "Issues are structured records with status, priority, assignee, due date, labels, and timeline events. Activity records are append-only so comments, status changes, and assignment changes can be reviewed later.",
-      Challenges: "The hard part is balancing quick task creation with enough structure for larger teams, filtered views, and notification rules.",
-      "Testing approach": "Tests would cover board transitions, permissions, notification triggers, search behavior, filters, and timeline event creation.",
-      "Demo data note": "Alex Morgan, Nina Patel, Daniel Kim, and Sofia Reyes are fictional demo users used to show realistic collaboration states.",
-      "Future improvements": "Sprint planning, file attachments, saved views, GitHub issue sync, keyboard shortcuts, and analytics for delivery trends."
+      Solution: "TaskForge provides a working full-stack issue tracker with demo authentication, workspace and project management, issue CRUD, assignment, due dates, labels, comments, filters, dashboard statistics, activity history, and a protected demo-data reset.",
+      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. The backend validates requests with Pydantic, stores local development data in SQLite, seeds realistic demonstration records, and protects application routes with a simple bearer-token demo session.",
+      Frontend: "The interface is a responsive dark admin application with dashboard metrics, project forms, issue filters, issue details, comments, activity timelines, loading states, empty states, validation feedback, destructive-action confirmations, and visible focus states.",
+      Backend: "FastAPI exposes health, authentication, dashboard, workspaces, projects, issues, comments, users, activity, and demo reset endpoints with useful error messages and reference validation.",
+      Database: "SQLite stores workspaces, projects, issues, comments, users, and activity entries for local development. Seed logic restores the original simulated dataset for portfolio review.",
+      Authentication: "The demo login uses demo@taskforge.dev and demo1234. The backend verifies the password and requires a bearer token for protected API actions.",
+      "Main features": ["Demo login", "Workspaces", "Project create/edit/delete", "Issue create/edit/delete", "Status and priority changes", "Assignees", "Due dates", "Labels", "Search and filters", "Comments", "Activity history", "Dashboard statistics", "Demo data reset"],
+      Validation: "The API prevents missing project, user, workspace, issue, and comment references, validates request payloads, and returns appropriate HTTP errors for invalid actions.",
+      "Technology stack": "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pytest.",
+      "Testing approach": "Pytest covers health, successful login, invalid login, project creation, issue creation, issue update, issue deletion, filtering, comment creation, and demo reset. Vitest covers frontend helper logic, and the production frontend build was verified.",
+      "Technical challenges": "The main challenge was turning a portfolio preview into a complete local product with realistic seeded data, real API state, protected reset behavior, responsive layouts, and evidence screenshots captured from the running application.",
+      "Demo data note": "Portfolio application using simulated demonstration data. Alex Morgan, Nina Patel, Daniel Kim, and Sofia Reyes are fictional demo users.",
+      "Future improvements": "Public deployment, saved issue views, drag-and-drop board movement, file attachments, GitHub issue sync, CI test badges, and project-level reporting charts."
     }
   },
   apiwatch: {
@@ -102,16 +106,19 @@ const projectEvidence = {
     architecture: "Frontend dashboard, REST API layer, PostgreSQL data model, background import/export tasks, audit-log trail"
   },
   taskforge: {
-    liveDemo: "https://placeholder.example/taskforge-demo",
+    liveDemo: "",
+    liveDemoReady: false,
     repository: "https://github.com/lshbkrdz/taskforge",
-    video: "https://placeholder.example/taskforge-video",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
     caseStudy: "Current portfolio case study",
-    credentials: "Demo users are fictional; login credentials will be added with the real demo.",
-    stack: "React, TypeScript, Django, PostgreSQL, REST API, Redis, Celery",
-    deployment: "Planned: Django API + PostgreSQL + Redis worker + static frontend deployment",
-    testStatus: "Planned automated tests: board transitions, filters, comments, notifications, permissions",
+    credentials: "demo@taskforge.dev / demo1234",
+    stack: "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pytest",
+    deployment: "Local application verified. Public live deployment not completed yet.",
+    testStatus: "Backend: python -m pytest, 8 passed. Frontend: npm run test, 2 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-11",
-    architecture: "Workspace-based frontend, Django REST resources, async notification worker, activity-event timeline"
+    architecture: "React/Vite frontend, FastAPI REST API, SQLite data layer, Pydantic validation, token-based demo session, seeded demo reset, activity timeline"
   },
   apiwatch: {
     liveDemo: "https://placeholder.example/apiwatch-demo",
@@ -169,15 +176,23 @@ function renderEvidence(projectId, variant = "card") {
   if (!evidence) return "";
 
   const compact = variant === "card";
+  const liveDemoButton = evidence.liveDemoReady
+    ? `<a class="btn btn-small btn-secondary" href="${evidence.liveDemo}" target="_blank" rel="noopener noreferrer">Live Demo</a>`
+    : `<button class="btn btn-small btn-disabled" type="button" disabled>Live Demo — Coming Soon</button>`;
+  const liveDemoValue = evidence.liveDemo
+    ? `${evidence.liveDemo}${evidence.liveDemoReady ? "" : " <span>placeholder URL</span>"}`
+    : "Not deployed yet";
   const repositoryButton = evidence.repositoryReady
-    ? `<a class="btn btn-small btn-secondary" href="${evidence.repository}" target="_blank" rel="noreferrer">Public GitHub Repository</a>`
+    ? `<a class="btn btn-small btn-secondary" href="${evidence.repository}" target="_blank" rel="noopener noreferrer">Public GitHub Repository</a>`
     : `<button class="btn btn-small btn-disabled" type="button" disabled>Public GitHub Repository Coming Soon</button>`;
   const repositoryLabel = evidence.repositoryReady ? "" : " <span>placeholder URL</span>";
   const videoButton = evidence.videoReady
     ? `<a class="btn btn-small btn-secondary" href="${evidence.video}" target="_blank" rel="noopener noreferrer">Watch Video Walkthrough</a>`
     : `<button class="btn btn-small btn-disabled" type="button" disabled>Video Walkthrough Coming Soon</button>`;
-  const videoLabel = evidence.videoReady ? "" : " <span>placeholder URL</span>";
-  const helperText = projectId === "stockflow" ? "" : "<span>Placeholders until real links are added</span>";
+  const videoValue = evidence.video
+    ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
+    : "Not available yet";
+  const helperText = projectId === "stockflow" || projectId === "taskforge" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
@@ -186,15 +201,15 @@ function renderEvidence(projectId, variant = "card") {
         ${helperText}
       </div>
       <div class="evidence-actions">
-        <button class="btn btn-small btn-disabled" type="button" disabled>Live Demo Coming Soon</button>
+        ${liveDemoButton}
         ${repositoryButton}
         ${videoButton}
         <button class="btn btn-small btn-primary" type="button" data-project-open="${projectId}">Technical Case Study</button>
       </div>
       <dl class="evidence-list">
-        <div><dt>Live Demo</dt><dd>${evidence.liveDemo} <span>placeholder URL</span></dd></div>
+        <div><dt>Live Demo</dt><dd>${liveDemoValue}</dd></div>
         <div><dt>Public GitHub Repository</dt><dd>${evidence.repository}${repositoryLabel}</dd></div>
-        <div><dt>Video Walkthrough</dt><dd>${evidence.video}${videoLabel}</dd></div>
+        <div><dt>Video Walkthrough</dt><dd>${videoValue}</dd></div>
         <div><dt>Technical Case Study</dt><dd>${evidence.caseStudy}</dd></div>
         <div><dt>Demo Login Credentials</dt><dd>${evidence.credentials}</dd></div>
         <div><dt>Technology Stack</dt><dd>${evidence.stack}</dd></div>
