@@ -12,7 +12,7 @@
   <header class="site-header" data-header>
     <nav class="nav-shell" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Lasha Bakuradze home">
-        <span class="brand-mark">LB</span>
+        <img class="brand-photo" src="assets/images/lasha-bakuradze.jpg" alt="Portrait of Lasha Bakuradze">
         <span class="brand-copy">
           <strong>Lasha Bakuradze</strong>
           <small>Software Developer</small>
@@ -39,6 +39,11 @@
           <p class="eyebrow">FULL-STACK DEVELOPER</p>
           <h1>Building Reliable Software for Real-World Problems</h1>
           <p class="hero-text">I build modern web applications, APIs, automation tools, dashboards, and internal business systems using practical full-stack and AI-assisted development workflows.</p>
+          <div class="hero-proof" aria-label="Portfolio positioning">
+            <span><strong>5</strong> realistic product builds</span>
+            <span><strong>API</strong> first architecture</span>
+            <span><strong>Remote</strong> Georgia</span>
+          </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">View Projects</a>
             <a class="btn btn-secondary" href="#contact">Contact Me</a>
@@ -59,24 +64,25 @@
           </div>
           <div class="workspace-preview">
             <div class="code-pane">
-              <p><span class="muted">01</span> <span class="keyword">const</span> workflow = <span class="string">"build"</span>;</p>
-              <p><span class="muted">02</span> <span class="keyword">await</span> api.validate(input);</p>
-              <p><span class="muted">03</span> dashboard.render(metrics);</p>
-              <p><span class="muted">04</span> logger.info(<span class="string">"ready"</span>);</p>
+              <p><span class="muted">01</span> <span class="keyword">type</span> Build = <span class="string">"idea"</span> | <span class="string">"api"</span> | <span class="string">"ui"</span>;</p>
+              <p><span class="muted">02</span> <span class="keyword">await</span> auth.requireRole(<span class="string">"admin"</span>);</p>
+              <p><span class="muted">03</span> <span class="keyword">const</span> report = orders.toDashboard();</p>
+              <p><span class="muted">04</span> queue.run(<span class="string">"sync:inventory"</span>);</p>
+              <p><span class="muted">05</span> monitor.alerts.filter(isActionable);</p>
             </div>
             <div class="status-pane">
               <div class="status-card">
-                <span>API</span>
+                <span>API Health</span>
                 <strong>Healthy</strong>
-                <small>142 ms avg</small>
+                <small>24 endpoints monitored</small>
               </div>
               <div class="status-card">
-                <span>Jobs</span>
+                <span>Automation Jobs</span>
                 <strong>18</strong>
-                <small>queued safely</small>
+                <small>queued, retried, logged</small>
               </div>
               <div class="status-card wide">
-                <span>Pipeline</span>
+                <span>Delivery Pipeline</span>
                 <div class="pipeline">
                   <i></i><i></i><i></i><i></i>
                 </div>
@@ -98,18 +104,22 @@
       <div class="project-grid">
         <article class="project-card reveal">
           <div class="project-preview inventory-preview" aria-hidden="true">
-            <div class="preview-top"><span>StockFlow</span><strong>Inventory</strong></div>
+            <div class="preview-top"><span>StockFlow</span><strong>Simulated demo data</strong></div>
             <div class="metric-strip">
               <b>1,284<small>products</small></b>
               <b>43<small>suppliers</small></b>
               <b>18<small>alerts</small></b>
             </div>
-            <div class="table-lines"><i></i><i></i><i></i><i></i></div>
+            <div class="mini-table">
+              <div><span>SKU-1842</span><b>Low stock</b><em>8 left</em></div>
+              <div><span>PO-3091</span><b>Inbound</b><em>Wed</em></div>
+              <div><span>SO-7784</span><b>Picking</b><em>126 orders</em></div>
+            </div>
           </div>
           <div class="card-body">
             <div class="card-kicker"><span>Inventory and Order Management Platform</span><b>Portfolio Project</b></div>
             <h3>StockFlow</h3>
-            <p>A full-stack operations platform for managing products, warehouse stock, suppliers, purchase orders, sales orders, and business reporting.</p>
+            <p>A full-stack operations platform for managing warehouse stock, suppliers, purchase orders, sales orders, CSV imports, audit history, and reporting.</p>
             <p class="data-label">Simulated demo data: 1,284 products, 43 suppliers, 126 pending orders, 18 low-stock alerts.</p>
             <div class="tag-list"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>REST API</span><span>Docker</span><span>JWT Authentication</span></div>
             <ul class="feature-list">
@@ -127,11 +137,11 @@
 
         <article class="project-card reveal">
           <div class="project-preview task-preview" aria-hidden="true">
-            <div class="preview-top"><span>TaskForge</span><strong>Board</strong></div>
+            <div class="preview-top"><span>TaskForge</span><strong>Demo users</strong></div>
             <div class="kanban">
-              <div><b>Backlog</b><i></i><i></i></div>
-              <div><b>Build</b><i></i><i></i></div>
-              <div><b>Review</b><i></i><i></i></div>
+              <div><b>Backlog</b><i>Auth refresh</i><i>Search filters</i></div>
+              <div><b>Build</b><i>Issue API</i><i>Comments</i></div>
+              <div><b>Review</b><i>Board drag</i><i>Activity feed</i></div>
             </div>
             <small>Demo users: Alex, Nina, Daniel, Sofia</small>
           </div>
@@ -156,10 +166,11 @@
 
         <article class="project-card reveal">
           <div class="project-preview api-preview" aria-hidden="true">
-            <div class="preview-top"><span>APIWatch</span><strong>Live</strong></div>
+            <div class="preview-top"><span>APIWatch</span><strong>Simulated metrics</strong></div>
             <div class="uptime-ring">99.98%</div>
             <div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <small>Simulated monitoring data</small>
+            <div class="alert-row"><span class="dot ok"></span> Payments API healthy <b>142 ms</b></div>
+            <div class="alert-row"><span class="dot warn"></span> Search API degraded <b>1 incident</b></div>
           </div>
           <div class="card-body">
             <div class="card-kicker"><span>API Monitoring Dashboard</span><b>Portfolio Project</b></div>
@@ -182,12 +193,12 @@
 
         <article class="project-card reveal">
           <div class="project-preview crm-preview" aria-hidden="true">
-            <div class="preview-top"><span>ClientDesk</span><strong>CRM</strong></div>
+            <div class="preview-top"><span>ClientDesk</span><strong>Demo records</strong></div>
             <div class="pipeline-columns">
               <i></i><i></i><i></i><i></i>
             </div>
-            <div class="contact-row"><span></span><b>Lead Pipeline</b></div>
-            <small>Demo records only</small>
+            <div class="contact-row"><span></span><b>Northstar Labs</b><em>Proposal sent</em></div>
+            <div class="contact-row"><span></span><b>Orbit Supply</b><em>Invoice due</em></div>
           </div>
           <div class="card-body">
             <div class="card-kicker"><span>CRM and Client Management Platform</span><b>Concept Product</b></div>
@@ -210,9 +221,9 @@
 
         <article class="project-card reveal project-card-wide">
           <div class="project-preview automation-preview" aria-hidden="true">
-            <div class="preview-top"><span>AutoFlow</span><strong>Jobs</strong></div>
+            <div class="preview-top"><span>AutoFlow</span><strong>Simulated logs</strong></div>
             <div class="flow-row"><i></i><span></span><i></i><span></span><i></i></div>
-            <div class="log-stack"><p>CSV validated</p><p>JSON transformed</p><p>Report generated</p></div>
+            <div class="log-stack"><p>08:30 CSV validated - 2,418 rows</p><p>08:31 JSON transformed - 0 errors</p><p>08:32 Report generated - finance.csv</p></div>
           </div>
           <div class="card-body">
             <div class="card-kicker"><span>Business Automation Toolkit</span><b>Portfolio Project</b></div>
@@ -290,14 +301,15 @@
           <p>Open to full-time roles, freelance work, and contract projects. I work remotely from Georgia and focus on software development, automation, APIs, dashboards, and internal tools.</p>
         </div>
         <div class="contact-list">
-          <a href="mailto:your.email@example.com">your.email@example.com</a>
+          <a href="mailto:lshbkrdz@gmail.com">lshbkrdz@gmail.com</a>
+          <a href="https://wa.me/995595552188" target="_blank" rel="noreferrer">WhatsApp: +995 595 552 188</a>
           <a href="https://github.com/lshbkrdz" target="_blank" rel="noreferrer">github.com/lshbkrdz</a>
-          <span>LinkedIn: add your profile URL</span>
           <span>Location: Georgia</span>
           <span>Work preference: Remote</span>
         </div>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:your.email@example.com">Email Me</a>
+          <a class="btn btn-primary" href="mailto:lshbkrdz@gmail.com">Email Me</a>
+          <a class="btn btn-secondary" href="https://wa.me/995595552188" target="_blank" rel="noreferrer">WhatsApp</a>
           <a class="btn btn-secondary" href="https://github.com/lshbkrdz" target="_blank" rel="noreferrer">View GitHub</a>
         </div>
       </div>

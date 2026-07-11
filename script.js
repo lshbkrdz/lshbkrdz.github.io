@@ -5,13 +5,14 @@ const projectDetails = {
     status: "Portfolio Project",
     sections: {
       Problem: "Small teams often manage inventory, supplier communication, purchase orders, and sales orders across disconnected spreadsheets. That makes low-stock risk, audit history, and reporting difficult to trust.",
-      Solution: "StockFlow is designed as a central operations platform with authenticated users, permission-aware workflows, product records, stock movements, purchase orders, and reporting dashboards.",
-      Architecture: "React and TypeScript provide the interface, FastAPI exposes REST endpoints, PostgreSQL stores operational data, JWT authentication protects sessions, and Docker keeps the development environment repeatable.",
+      Solution: "StockFlow centralizes product records, stock movement history, supplier data, purchase orders, sales orders, CSV import/export, and reporting into one permission-aware operations workspace.",
+      Architecture: "React and TypeScript power the dashboard and forms. FastAPI exposes REST resources for products, suppliers, orders, imports, and reports. PostgreSQL stores normalized inventory data, JWT protects sessions, and Docker keeps the development environment repeatable.",
       "Main features": ["User login", "Role-based permissions", "Product management", "Inventory levels", "Low-stock warnings", "Supplier records", "Purchase orders", "Order tracking", "CSV import/export", "Audit logs", "Reporting dashboard"],
       "Technology stack": "React, TypeScript, FastAPI, PostgreSQL, REST API, Docker, JWT Authentication.",
-      "Technical decisions": "Inventory changes are modeled as auditable movements instead of direct quantity edits, making reporting and debugging easier. Import flows validate CSV rows before writing records.",
-      Challenges: "The main challenge is keeping stock counts accurate while multiple order states can affect availability, reserved quantities, and incoming supply.",
-      "Testing approach": "Test coverage would focus on authentication, permission checks, import validation, stock movement calculations, and dashboard summary totals.",
+      "Technical decisions": "Inventory changes are modeled as auditable movement records instead of direct quantity edits. CSV imports run through row-level validation before any database writes. Dashboard totals are calculated from stored order states rather than hard-coded summary fields.",
+      Challenges: "The main challenge is keeping stock counts accurate while pending purchase orders, reserved sales orders, returns, and manual adjustments all affect availability.",
+      "Testing approach": "Test coverage would focus on authentication, permission checks, CSV validation, stock movement calculations, order-state transitions, and dashboard summary totals.",
+      "Demo data note": "The displayed product counts, supplier records, order totals, and low-stock alerts are simulated portfolio data.",
       "Future improvements": "Barcode scanning, supplier portals, recurring purchase orders, export templates, and role-specific notification rules."
     }
   },
@@ -21,13 +22,14 @@ const projectDetails = {
     status: "Demo Application",
     sections: {
       Problem: "Teams need a clear way to plan work, track bugs, discuss decisions, and see what changed without losing context across chats and documents.",
-      Solution: "TaskForge organizes work into workspaces, project boards, issues, priorities, comments, filters, search, notifications, and activity history.",
-      Architecture: "A React and TypeScript client communicates with Django REST endpoints backed by PostgreSQL. Redis and Celery support notifications and background activity processing.",
+      Solution: "TaskForge organizes work into workspaces, project boards, issues, priorities, comments, filters, search, notifications, and activity history so team context stays attached to the work item.",
+      Architecture: "A React and TypeScript client communicates with Django REST endpoints backed by PostgreSQL. Redis and Celery support notification delivery, async activity processing, and scheduled reminders.",
       "Main features": ["User authentication", "Workspaces", "Project boards", "Issue creation", "Status management", "Priority levels", "Comments", "Activity history", "Filters", "Search", "Notifications"],
       "Technology stack": "React, TypeScript, Django, PostgreSQL, REST API, Redis, Celery.",
-      "Technical decisions": "Issues are treated as structured records with status, priority, assignee, and timeline events so the interface can support filtering and audit-friendly history.",
-      Challenges: "The hard part is balancing simple task creation with enough structure for larger teams and more complex workflows.",
+      "Technical decisions": "Issues are structured records with status, priority, assignee, due date, labels, and timeline events. Activity records are append-only so comments, status changes, and assignment changes can be reviewed later.",
+      Challenges: "The hard part is balancing quick task creation with enough structure for larger teams, filtered views, and notification rules.",
       "Testing approach": "Tests would cover board transitions, permissions, notification triggers, search behavior, filters, and timeline event creation.",
+      "Demo data note": "Alex Morgan, Nina Patel, Daniel Kim, and Sofia Reyes are fictional demo users used to show realistic collaboration states.",
       "Future improvements": "Sprint planning, file attachments, saved views, GitHub issue sync, keyboard shortcuts, and analytics for delivery trends."
     }
   },
@@ -37,13 +39,14 @@ const projectDetails = {
     status: "Portfolio Project",
     sections: {
       Problem: "API failures are expensive when teams discover them from users instead of monitoring. Teams need uptime, latency, incident history, and endpoint health in one place.",
-      Solution: "APIWatch tracks endpoint checks, response times, incidents, status filtering, scheduled checks, failure alerts, and error history using simulated monitoring data.",
-      Architecture: "FastAPI provides the monitoring API, scheduled Python jobs execute checks, PostgreSQL stores historical results, and a dashboard renders uptime and response metrics.",
+      Solution: "APIWatch tracks endpoint checks, response times, incidents, status filtering, scheduled checks, failure alerts, and error history in a dashboard designed for quick operational decisions.",
+      Architecture: "FastAPI provides the monitoring API, scheduled Python jobs execute HTTP checks, PostgreSQL stores historical results, and dashboard views summarize uptime, latency, and incident activity.",
       "Main features": ["Endpoint monitoring", "Uptime history", "Response-time charts", "Incident logs", "Failure alerts", "Status filtering", "Scheduled checks", "Error history"],
       "Technology stack": "Python, FastAPI, PostgreSQL, Scheduled Jobs, REST APIs, Charts, Docker.",
-      "Technical decisions": "Monitoring results are stored as timestamped events, which supports uptime summaries, incident grouping, and endpoint-level performance history.",
+      "Technical decisions": "Monitoring results are stored as timestamped events. Incidents are grouped from failed checks so the interface can show both individual failures and higher-level operational status.",
       Challenges: "The main challenge is preventing noisy alerts while still reporting real failures quickly and clearly.",
       "Testing approach": "Tests would include scheduled job behavior, timeout handling, incident grouping, status filtering, and response-time aggregation.",
+      "Demo data note": "Uptime, response time, endpoint count, and incident numbers are simulated monitoring metrics.",
       "Future improvements": "Slack alerts, retry policies, public status pages, custom check intervals, webhook notifications, and multi-region checks."
     }
   },
@@ -53,13 +56,14 @@ const projectDetails = {
     status: "Concept Product",
     sections: {
       Problem: "Freelancers and small teams often need a CRM that is lighter than enterprise tools but more reliable than scattered notes and spreadsheets.",
-      Solution: "ClientDesk provides contact management, lead pipeline tracking, notes, tasks, client status, invoice tracking, search, filters, and activity timelines.",
+      Solution: "ClientDesk provides contact management, lead pipeline tracking, notes, tasks, client status, invoice tracking, search, filters, and activity timelines in a compact CRM interface.",
       Architecture: "The concept uses a React frontend, FastAPI backend, PostgreSQL database, authenticated REST endpoints, and responsive layouts for desktop and mobile use.",
       "Main features": ["Contact management", "Lead pipeline", "Notes", "Tasks", "Client status", "Invoice tracking", "Search", "Filters", "Activity timeline"],
       "Technology stack": "React, FastAPI, PostgreSQL, Authentication, REST API, Responsive Design.",
-      "Technical decisions": "Client activity is grouped into timeline events so conversations, notes, tasks, and invoices can be reviewed in one place.",
+      "Technical decisions": "Client activity is grouped into timeline events so conversations, notes, tasks, invoices, and pipeline changes can be reviewed from one record.",
       Challenges: "The main product challenge is keeping the tool lightweight while still supporting real sales follow-up and client organization.",
       "Testing approach": "Tests would cover contact creation, pipeline movement, search results, filter combinations, timeline ordering, and invoice status updates.",
+      "Demo data note": "Northstar Labs, Orbit Supply, and any displayed client contacts are fictional demo records.",
       "Future improvements": "Email reminders, invoice PDF generation, calendar sync, import tools, custom fields, and lead source reporting."
     }
   },
@@ -70,12 +74,13 @@ const projectDetails = {
     sections: {
       Problem: "Manual file handling, data cleanup, reporting, and API synchronization can consume hours while introducing avoidable errors.",
       Solution: "AutoFlow packages repeatable workflows for batch file processing, CSV validation, JSON transformation, automated reports, failed-task logs, API synchronization, and configurable error handling.",
-      Architecture: "Python scripts and reusable workflow modules process local files, validate structured data, call REST APIs, generate reports, and record logs for review.",
+      Architecture: "Python scripts and reusable workflow modules process files, validate structured data, call REST APIs, generate reports, and write logs that can be reviewed after every run.",
       "Main features": ["Batch file processing", "CSV validation", "JSON transformation", "Automated reports", "Failed-task logs", "API synchronization", "Configurable workflows", "Error handling"],
       "Technology stack": "Python, REST APIs, CSV, JSON, Automation, Logging.",
-      "Technical decisions": "Workflow steps are designed as small reusable functions with clear inputs, outputs, and failure states so automation stays debuggable.",
+      "Technical decisions": "Workflow steps are designed as small reusable functions with clear inputs, outputs, retries, and failure states. Logs separate expected validation errors from unexpected runtime failures.",
       Challenges: "Automation needs careful validation and logging because silent failures can create bigger operational problems than manual work.",
       "Testing approach": "Tests would use fixture files for valid rows, invalid rows, malformed JSON, API failure responses, retry behavior, and report output checks.",
+      "Demo data note": "Workflow timestamps, row counts, transformed files, and report names are simulated portfolio examples.",
       "Future improvements": "A configuration UI, scheduled runs, email summaries, webhook triggers, cloud storage integrations, and richer reporting templates."
     }
   }

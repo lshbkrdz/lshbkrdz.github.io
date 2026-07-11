@@ -97,6 +97,12 @@ Place project screenshots in:
 assets/images/
 ```
 
+The current portrait file is:
+
+```text
+assets/images/lasha-bakuradze.jpg
+```
+
 Use relative paths in `index.html`, for example:
 
 ```html
@@ -127,14 +133,15 @@ When a demo is ready, replace the disabled button with a real link:
 
 ## Updating Contact Details
 
-In `index.html`, search for:
+The current contact details are:
 
 ```text
-your.email@example.com
-LinkedIn: add your profile URL
+lshbkrdz@gmail.com
+WhatsApp: +995 595 552 188
+GitHub: https://github.com/lshbkrdz
 ```
 
-Replace them with your real email address and LinkedIn profile URL.
+To update them later, search for the email address or WhatsApp number in `index.html`.
 
 The contact section uses `mailto:` because GitHub Pages does not provide a backend. If you want a working contact form later, connect a service such as Formspree and do not commit API keys or secrets.
 
