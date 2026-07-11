@@ -91,7 +91,8 @@ const projectEvidence = {
     liveDemo: "https://placeholder.example/stockflow-demo",
     repository: "https://github.com/lshbkrdz/stockflow",
     repositoryReady: true,
-    video: "https://placeholder.example/stockflow-video",
+    video: "https://youtu.be/L9d5Kerptoo",
+    videoReady: true,
     caseStudy: "Current portfolio case study",
     credentials: "Demo login will be added when the deployed app is ready.",
     stack: "React, TypeScript, FastAPI, PostgreSQL, REST API, Docker, JWT Authentication",
@@ -172,23 +173,28 @@ function renderEvidence(projectId, variant = "card") {
     ? `<a class="btn btn-small btn-secondary" href="${evidence.repository}" target="_blank" rel="noreferrer">Public GitHub Repository</a>`
     : `<button class="btn btn-small btn-disabled" type="button" disabled>Public GitHub Repository Coming Soon</button>`;
   const repositoryLabel = evidence.repositoryReady ? "" : " <span>placeholder URL</span>";
+  const videoButton = evidence.videoReady
+    ? `<a class="btn btn-small btn-secondary" href="${evidence.video}" target="_blank" rel="noopener noreferrer">Watch Video Walkthrough</a>`
+    : `<button class="btn btn-small btn-disabled" type="button" disabled>Video Walkthrough Coming Soon</button>`;
+  const videoLabel = evidence.videoReady ? "" : " <span>placeholder URL</span>";
+  const helperText = projectId === "stockflow" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
       <div class="evidence-head">
         <h4>Project Evidence</h4>
-        <span>Placeholders until real links are added</span>
+        ${helperText}
       </div>
       <div class="evidence-actions">
         <button class="btn btn-small btn-disabled" type="button" disabled>Live Demo Coming Soon</button>
         ${repositoryButton}
-        <button class="btn btn-small btn-disabled" type="button" disabled>Video Walkthrough Coming Soon</button>
+        ${videoButton}
         <button class="btn btn-small btn-primary" type="button" data-project-open="${projectId}">Technical Case Study</button>
       </div>
       <dl class="evidence-list">
         <div><dt>Live Demo</dt><dd>${evidence.liveDemo} <span>placeholder URL</span></dd></div>
         <div><dt>Public GitHub Repository</dt><dd>${evidence.repository}${repositoryLabel}</dd></div>
-        <div><dt>Video Walkthrough</dt><dd>${evidence.video} <span>placeholder URL</span></dd></div>
+        <div><dt>Video Walkthrough</dt><dd>${evidence.video}${videoLabel}</dd></div>
         <div><dt>Technical Case Study</dt><dd>${evidence.caseStudy}</dd></div>
         <div><dt>Demo Login Credentials</dt><dd>${evidence.credentials}</dd></div>
         <div><dt>Technology Stack</dt><dd>${evidence.stack}</dd></div>
