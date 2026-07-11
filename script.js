@@ -65,18 +65,28 @@ const projectDetails = {
   clientdesk: {
     title: "ClientDesk",
     type: "CRM and Client Management Platform",
-    status: "Concept Product",
+    status: "Completed Portfolio Project",
     sections: {
       Problem: "Freelancers and small teams often need a CRM that is lighter than enterprise tools but more reliable than scattered notes and spreadsheets.",
-      Solution: "ClientDesk provides contact management, lead pipeline tracking, notes, tasks, client status, invoice tracking, search, filters, and activity timelines in a compact CRM interface.",
-      Architecture: "The concept uses a React frontend, FastAPI backend, PostgreSQL database, authenticated REST endpoints, and responsive layouts for desktop and mobile use.",
-      "Main features": ["Contact management", "Lead pipeline", "Notes", "Tasks", "Client status", "Invoice tracking", "Search", "Filters", "Activity timeline"],
-      "Technology stack": "React, FastAPI, PostgreSQL, Authentication, REST API, Responsive Design.",
-      "Technical decisions": "Client activity is grouped into timeline events so conversations, notes, tasks, invoices, and pipeline changes can be reviewed from one record.",
-      Challenges: "The main product challenge is keeping the tool lightweight while still supporting real sales follow-up and client organization.",
-      "Testing approach": "Tests would cover contact creation, pipeline movement, search results, filter combinations, timeline ordering, and invoice status updates.",
-      "Demo data note": "Northstar Labs, Orbit Supply, and any displayed client contacts are fictional demo records.",
-      "Future improvements": "Email reminders, invoice PDF generation, calendar sync, import tools, custom fields, and lead source reporting."
+      Solution: "ClientDesk provides a working full-stack CRM with demo authentication, contacts, companies, lead pipeline stages, notes, tasks, invoices, search, filters, CSV exports, activity history, and a protected demo-data reset.",
+      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. The backend validates requests with Pydantic, stores local development data in SQLite, hashes the demo password, issues bearer tokens, and seeds realistic fictional CRM records.",
+      Authentication: "The demo login uses demo@clientdesk.dev and demo1234. The password is stored as a PBKDF2 hash, and protected routes reject unauthenticated requests.",
+      "Contact management": "Users can create, view, edit, search, filter, sort, open details for, and delete contacts. Contact details show company context, notes, open tasks, invoices, leads, and related activity.",
+      "Company management": "Users can create, update status for, delete, and review fictional demo companies such as Northstar Labs, Orbit Supply, Ember Studio, Meridian Works, and Clearpath Digital.",
+      "Lead pipeline": "Leads can be created, filtered, moved between New Lead, Contacted, Qualified, Proposal Sent, Negotiation, Won, and Lost, and each stage change records activity.",
+      "Activity events": "The backend records contact, company, lead, note, task, invoice, pipeline, and reset events as timestamped activity entries shown in chronological order.",
+      Tasks: "Tasks support creation, status updates, completion, reopening, deletion, priority badges, due dates, and filtering by status.",
+      "Invoice tracking": "Invoices support creation, status updates, deletion, currencies, due dates, outstanding totals, paid totals, and CSV exports. No payment processing or card data is included.",
+      Search: "Global search returns grouped contacts, companies, leads, tasks, and invoices from the current database state.",
+      Filters: "Contacts, leads, tasks, and invoices expose practical filters backed by API query parameters.",
+      "CSV exports": "Contacts, leads, tasks, and invoices export from current SQLite records, not hard-coded frontend data.",
+      Database: "SQLite stores users, contacts, companies, leads, notes, tasks, invoices, and activity entries for local development.",
+      Testing: "Pytest covers health, login, invalid login, protected-route rejection, password hashing, contact CRUD, company creation, lead creation, pipeline movement, search/filter combinations, note creation, task completion/reopen, invoice updates, activity ordering, CSV exports, demo reset, and dashboard aggregation. Vitest covers frontend presentation logic, and the production build was verified.",
+      "Technical challenges": "The main challenge was keeping the CRM lightweight while still making core workflows genuinely functional: related records, timeline activity, current-state exports, backend-derived dashboard totals, and responsive layouts.",
+      "Main features": ["Demo login", "Contact management", "Company management", "Lead pipeline", "Pipeline stage movement", "Notes", "Tasks", "Invoice tracking", "Search", "Filters", "Activity timeline", "CSV exports", "Demo-data reset"],
+      "Technology stack": "React, TypeScript, Vite, Python, FastAPI, SQLite, REST API, Pytest, Responsive Design.",
+      "Demo data note": "Portfolio application using fictional demonstration companies, contacts, invoices, and activity records.",
+      "Future improvements": "Email reminders, calendar synchronization, invoice PDF generation, import tools, custom fields, lead-source reporting, production database migration, multi-user workspaces, and role-based permissions."
     }
   },
   autoflow: {
@@ -144,16 +154,19 @@ const projectEvidence = {
     architecture: "React/Vite frontend, FastAPI REST API, SQLite storage, HTTPX monitor, simulated endpoint profiles, guarded scheduler, incident grouping, safe URL validation"
   },
   clientdesk: {
-    liveDemo: "https://placeholder.example/clientdesk-demo",
+    liveDemo: "",
+    liveDemoReady: false,
     repository: "https://github.com/lshbkrdz/clientdesk",
-    video: "https://placeholder.example/clientdesk-video",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
     caseStudy: "Current portfolio case study",
-    credentials: "Demo records are fictional; login credentials will be added with the deployed app.",
-    stack: "React, FastAPI, PostgreSQL, Authentication, REST API, Responsive Design",
-    deployment: "Planned: FastAPI backend + PostgreSQL + static responsive frontend",
-    testStatus: "Planned automated tests: contacts, pipeline stages, search, filters, invoice status, timeline ordering",
+    credentials: "demo@clientdesk.dev / demo1234",
+    stack: "React, TypeScript, Vite, Python, FastAPI, SQLite, REST API, Pytest, Responsive Design",
+    deployment: "Local application verified. Public live deployment not completed yet.",
+    testStatus: "Backend: python -m pytest, 16 passed. Frontend: npm run test, 6 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-11",
-    architecture: "Contact records, pipeline state machine, activity timeline, invoice status tracking, authenticated API"
+    architecture: "React/Vite frontend, FastAPI REST API, SQLite CRM data model, Pydantic validation, token-based demo auth, seeded demo reset, timeline activity, CSV export layer"
   },
   autoflow: {
     liveDemo: "https://placeholder.example/autoflow-demo",
@@ -203,7 +216,7 @@ function renderEvidence(projectId, variant = "card") {
   const videoValue = evidence.video
     ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not available yet";
-  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" ? "" : "<span>Placeholders until real links are added</span>";
+  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
