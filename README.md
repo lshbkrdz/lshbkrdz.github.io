@@ -91,6 +91,7 @@ Example:
 stockflow: {
   liveDemo: "https://your-real-demo-url.example",
   repository: "https://github.com/lshbkrdz/stockflow",
+  repositoryReady: true,
   video: "https://youtube.com/watch?v=your-video-id",
   testStatus: "Passing - GitHub Actions",
   lastUpdated: "2026-07-11"
@@ -99,7 +100,7 @@ stockflow: {
 
 ### GitHub Repository
 
-Replace the `repository` placeholder with the real public GitHub repository URL. Enable the repository button in `renderEvidence()` only after the repository exists and is public.
+Replace the `repository` placeholder with the real public GitHub repository URL. Set `repositoryReady: true` only after the repository exists and is public.
 
 ### Live Demo
 

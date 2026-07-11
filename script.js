@@ -90,6 +90,7 @@ const projectEvidence = {
   stockflow: {
     liveDemo: "https://placeholder.example/stockflow-demo",
     repository: "https://github.com/lshbkrdz/stockflow",
+    repositoryReady: true,
     video: "https://placeholder.example/stockflow-video",
     caseStudy: "Current portfolio case study",
     credentials: "Demo login will be added when the deployed app is ready.",
@@ -167,6 +168,11 @@ function renderEvidence(projectId, variant = "card") {
   if (!evidence) return "";
 
   const compact = variant === "card";
+  const repositoryButton = evidence.repositoryReady
+    ? `<a class="btn btn-small btn-secondary" href="${evidence.repository}" target="_blank" rel="noreferrer">Public GitHub Repository</a>`
+    : `<button class="btn btn-small btn-disabled" type="button" disabled>Public GitHub Repository Coming Soon</button>`;
+  const repositoryLabel = evidence.repositoryReady ? "" : " <span>placeholder URL</span>";
+
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
       <div class="evidence-head">
@@ -175,13 +181,13 @@ function renderEvidence(projectId, variant = "card") {
       </div>
       <div class="evidence-actions">
         <button class="btn btn-small btn-disabled" type="button" disabled>Live Demo Coming Soon</button>
-        <button class="btn btn-small btn-disabled" type="button" disabled>Public GitHub Repository Coming Soon</button>
+        ${repositoryButton}
         <button class="btn btn-small btn-disabled" type="button" disabled>Video Walkthrough Coming Soon</button>
         <button class="btn btn-small btn-primary" type="button" data-project-open="${projectId}">Technical Case Study</button>
       </div>
       <dl class="evidence-list">
         <div><dt>Live Demo</dt><dd>${evidence.liveDemo} <span>placeholder URL</span></dd></div>
-        <div><dt>Public GitHub Repository</dt><dd>${evidence.repository} <span>placeholder URL</span></dd></div>
+        <div><dt>Public GitHub Repository</dt><dd>${evidence.repository}${repositoryLabel}</dd></div>
         <div><dt>Video Walkthrough</dt><dd>${evidence.video} <span>placeholder URL</span></dd></div>
         <div><dt>Technical Case Study</dt><dd>${evidence.caseStudy}</dd></div>
         <div><dt>Demo Login Credentials</dt><dd>${evidence.credentials}</dd></div>
