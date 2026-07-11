@@ -86,9 +86,73 @@ const projectDetails = {
   }
 };
 
+const projectEvidence = {
+  stockflow: {
+    liveDemo: "https://placeholder.example/stockflow-demo",
+    repository: "https://github.com/lshbkrdz/stockflow",
+    video: "https://placeholder.example/stockflow-video",
+    caseStudy: "Current portfolio case study",
+    credentials: "Demo login will be added when the deployed app is ready.",
+    stack: "React, TypeScript, FastAPI, PostgreSQL, REST API, Docker, JWT Authentication",
+    deployment: "Planned: Render backend + managed PostgreSQL + static frontend deployment",
+    testStatus: "Planned automated tests: auth, imports, stock movement, permissions, reporting",
+    lastUpdated: "2026-07-11",
+    architecture: "Frontend dashboard, REST API layer, PostgreSQL data model, background import/export tasks, audit-log trail"
+  },
+  taskforge: {
+    liveDemo: "https://placeholder.example/taskforge-demo",
+    repository: "https://github.com/lshbkrdz/taskforge",
+    video: "https://placeholder.example/taskforge-video",
+    caseStudy: "Current portfolio case study",
+    credentials: "Demo users are fictional; login credentials will be added with the real demo.",
+    stack: "React, TypeScript, Django, PostgreSQL, REST API, Redis, Celery",
+    deployment: "Planned: Django API + PostgreSQL + Redis worker + static frontend deployment",
+    testStatus: "Planned automated tests: board transitions, filters, comments, notifications, permissions",
+    lastUpdated: "2026-07-11",
+    architecture: "Workspace-based frontend, Django REST resources, async notification worker, activity-event timeline"
+  },
+  apiwatch: {
+    liveDemo: "https://placeholder.example/apiwatch-demo",
+    repository: "https://github.com/lshbkrdz/apiwatch",
+    video: "https://placeholder.example/apiwatch-video",
+    caseStudy: "Current portfolio case study",
+    credentials: "No demo login yet; monitoring data shown here is simulated.",
+    stack: "Python, FastAPI, PostgreSQL, Scheduled Jobs, REST APIs, Charts, Docker",
+    deployment: "Planned: FastAPI service + scheduled check worker + PostgreSQL metrics store",
+    testStatus: "Planned automated tests: scheduled checks, timeout handling, incident grouping, metric summaries",
+    lastUpdated: "2026-07-11",
+    architecture: "Scheduled endpoint checks, event storage, incident grouping, dashboard summary API, status filtering"
+  },
+  clientdesk: {
+    liveDemo: "https://placeholder.example/clientdesk-demo",
+    repository: "https://github.com/lshbkrdz/clientdesk",
+    video: "https://placeholder.example/clientdesk-video",
+    caseStudy: "Current portfolio case study",
+    credentials: "Demo records are fictional; login credentials will be added with the deployed app.",
+    stack: "React, FastAPI, PostgreSQL, Authentication, REST API, Responsive Design",
+    deployment: "Planned: FastAPI backend + PostgreSQL + static responsive frontend",
+    testStatus: "Planned automated tests: contacts, pipeline stages, search, filters, invoice status, timeline ordering",
+    lastUpdated: "2026-07-11",
+    architecture: "Contact records, pipeline state machine, activity timeline, invoice status tracking, authenticated API"
+  },
+  autoflow: {
+    liveDemo: "https://placeholder.example/autoflow-demo",
+    repository: "https://github.com/lshbkrdz/autoflow",
+    video: "https://placeholder.example/autoflow-video",
+    caseStudy: "Current portfolio case study",
+    credentials: "No login required for planned CLI/workflow demos.",
+    stack: "Python, REST APIs, CSV, JSON, Automation, Logging",
+    deployment: "Planned: repository workflows, runnable scripts, sample input/output fixtures, optional dashboard wrapper",
+    testStatus: "Planned automated tests: CSV fixtures, JSON transforms, API failure handling, retry behavior, report output",
+    lastUpdated: "2026-07-11",
+    architecture: "Configurable workflow steps, validation layer, API sync modules, report generation, structured logs"
+  }
+};
+
 const header = document.querySelector("[data-header]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navLinks = document.querySelector("[data-nav-links]");
+const brandPhoto = document.querySelector("[data-brand-photo]");
 const modalBackdrop = document.querySelector("[data-modal-backdrop]");
 const modal = document.querySelector("[data-modal]");
 const modalTitle = document.querySelector("[data-modal-title]");
@@ -97,6 +161,39 @@ const modalStatus = document.querySelector("[data-modal-status]");
 const modalContent = document.querySelector("[data-modal-content]");
 const modalClose = document.querySelector("[data-modal-close]");
 let lastFocusedElement = null;
+
+function renderEvidence(projectId, variant = "card") {
+  const evidence = projectEvidence[projectId];
+  if (!evidence) return "";
+
+  const compact = variant === "card";
+  return `
+    <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
+      <div class="evidence-head">
+        <h4>Project Evidence</h4>
+        <span>Placeholders until real links are added</span>
+      </div>
+      <div class="evidence-actions">
+        <button class="btn btn-small btn-disabled" type="button" disabled>Live Demo Coming Soon</button>
+        <button class="btn btn-small btn-disabled" type="button" disabled>Public GitHub Repository Coming Soon</button>
+        <button class="btn btn-small btn-disabled" type="button" disabled>Video Walkthrough Coming Soon</button>
+        <button class="btn btn-small btn-primary" type="button" data-project-open="${projectId}">Technical Case Study</button>
+      </div>
+      <dl class="evidence-list">
+        <div><dt>Live Demo</dt><dd>${evidence.liveDemo} <span>placeholder URL</span></dd></div>
+        <div><dt>Public GitHub Repository</dt><dd>${evidence.repository} <span>placeholder URL</span></dd></div>
+        <div><dt>Video Walkthrough</dt><dd>${evidence.video} <span>placeholder URL</span></dd></div>
+        <div><dt>Technical Case Study</dt><dd>${evidence.caseStudy}</dd></div>
+        <div><dt>Demo Login Credentials</dt><dd>${evidence.credentials}</dd></div>
+        <div><dt>Technology Stack</dt><dd>${evidence.stack}</dd></div>
+        <div><dt>Deployment Information</dt><dd>${evidence.deployment}</dd></div>
+        <div><dt>Test Status</dt><dd>${evidence.testStatus}</dd></div>
+        <div><dt>Last Updated</dt><dd>${evidence.lastUpdated}</dd></div>
+        <div><dt>Architecture Overview</dt><dd>${evidence.architecture}</dd></div>
+      </dl>
+    </section>
+  `;
+}
 
 function setHeaderState() {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -116,13 +213,14 @@ function openProject(projectId) {
   modalTitle.textContent = project.title;
   modalType.textContent = project.type;
   modalStatus.textContent = project.status;
-  modalContent.innerHTML = Object.entries(project.sections).map(([heading, value]) => {
+  const sections = Object.entries(project.sections).map(([heading, value]) => {
     if (Array.isArray(value)) {
       const items = value.map((item) => `<li>${item}</li>`).join("");
       return `<section class="modal-section"><h3>${heading}</h3><ul>${items}</ul></section>`;
     }
     return `<section class="modal-section"><h3>${heading}</h3><p>${value}</p></section>`;
   }).join("");
+  modalContent.innerHTML = `${renderEvidence(projectId, "modal")}${sections}`;
 
   modalBackdrop.hidden = false;
   document.body.classList.add("modal-open");
@@ -165,11 +263,25 @@ navLinks.addEventListener("click", (event) => {
   }
 });
 
+if (brandPhoto) {
+  brandPhoto.addEventListener("error", () => {
+    const fallback = brandPhoto.nextElementSibling;
+    brandPhoto.hidden = true;
+    if (fallback) {
+      fallback.hidden = false;
+    }
+  });
+}
+
 document.addEventListener("click", (event) => {
   const projectButton = event.target.closest("[data-project-open]");
   if (projectButton) {
     openProject(projectButton.dataset.projectOpen);
   }
+});
+
+document.querySelectorAll("[data-evidence-card]").forEach((container) => {
+  container.innerHTML = renderEvidence(container.dataset.evidenceCard, "card");
 });
 
 modalClose.addEventListener("click", closeModal);

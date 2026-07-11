@@ -22,6 +22,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -242,6 +246,16 @@ h3 {
 .hero-text {
   max-width: 680px;
   margin-bottom: 22px;
+}
+
+.evidence-note {
+  margin-top: 16px;
+  border: 1px solid rgba(73, 211, 169, 0.18);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  color: #c5d0dd !important;
+  background: rgba(73, 211, 169, 0.055);
+  font-size: 0.95rem !important;
 }
 
 .hero-proof {
@@ -862,6 +876,93 @@ h3 {
   color: var(--muted);
 }
 
+.evidence-box {
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(4, 8, 13, 0.35);
+  overflow: hidden;
+}
+
+.evidence-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.evidence-head h4 {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.evidence-head span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  text-align: right;
+}
+
+.evidence-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 16px 4px;
+}
+
+.evidence-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 10px 16px 16px;
+}
+
+.evidence-list div {
+  min-width: 0;
+  border-bottom: 1px solid rgba(162, 179, 202, 0.1);
+  padding: 10px 10px 10px 0;
+}
+
+.evidence-list dt {
+  margin-bottom: 4px;
+  color: var(--subtle);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.evidence-list dd {
+  margin: 0;
+  color: #d5dde8;
+  font-size: 0.83rem;
+  overflow-wrap: anywhere;
+}
+
+.evidence-list dd span {
+  display: inline-flex;
+  margin-left: 4px;
+  color: var(--warning);
+  font-size: 0.72rem;
+}
+
+.evidence-box-compact .evidence-list {
+  grid-template-columns: 1fr;
+}
+
+.evidence-box-compact .evidence-head {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.evidence-box-compact .evidence-head span {
+  text-align: left;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -1028,6 +1129,10 @@ h3 {
   gap: 16px;
 }
 
+.modal-content .evidence-box {
+  margin-top: 0;
+}
+
 .modal-section {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1150,6 +1255,14 @@ h3 {
   .highlight-grid,
   .process-grid {
     grid-template-columns: 1fr;
+  }
+
+  .evidence-list {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-actions .btn {
+    width: 100%;
   }
 
   .contact-panel {
