@@ -3,10 +3,322 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lasha Bakuradze</title>
+  <meta name="description" content="Lasha Bakuradze builds full-stack web applications, backend APIs, automation tools, dashboards, and internal software systems.">
+  <title>Lasha Bakuradze | Full-Stack Developer</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Lasha Bakuradze</h1>
-  <p>My portfolio is coming soon.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Lasha Bakuradze home">
+        <span class="brand-mark">LB</span>
+        <span class="brand-copy">
+          <strong>Lasha Bakuradze</strong>
+          <small>Software Developer</small>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" data-nav-links>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">FULL-STACK DEVELOPER</p>
+          <h1>Building Reliable Software for Real-World Problems</h1>
+          <p class="hero-text">I build modern web applications, APIs, automation tools, dashboards, and internal business systems using practical full-stack and AI-assisted development workflows.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+            <a class="btn btn-ghost" href="https://github.com/lshbkrdz" target="_blank" rel="noreferrer">View GitHub</a>
+          </div>
+          <div class="signal-row" aria-label="Developer focus areas">
+            <span>Web Applications</span>
+            <span>Backend APIs</span>
+            <span>Automation</span>
+            <span>AI-Assisted Delivery</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Developer workspace preview">
+          <div class="window-bar">
+            <span></span><span></span><span></span>
+            <strong>system-overview.ts</strong>
+          </div>
+          <div class="workspace-preview">
+            <div class="code-pane">
+              <p><span class="muted">01</span> <span class="keyword">const</span> workflow = <span class="string">"build"</span>;</p>
+              <p><span class="muted">02</span> <span class="keyword">await</span> api.validate(input);</p>
+              <p><span class="muted">03</span> dashboard.render(metrics);</p>
+              <p><span class="muted">04</span> logger.info(<span class="string">"ready"</span>);</p>
+            </div>
+            <div class="status-pane">
+              <div class="status-card">
+                <span>API</span>
+                <strong>Healthy</strong>
+                <small>142 ms avg</small>
+              </div>
+              <div class="status-card">
+                <span>Jobs</span>
+                <strong>18</strong>
+                <small>queued safely</small>
+              </div>
+              <div class="status-card wide">
+                <span>Pipeline</span>
+                <div class="pipeline">
+                  <i></i><i></i><i></i><i></i>
+                </div>
+                <small>tested, reviewed, shipped</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects-section" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Selected Work</p>
+        <h2>Portfolio Projects and Demo Applications</h2>
+        <p>Realistic software concepts built to show product thinking, architecture, user flows, and technical execution. Fictional records and metrics are clearly labeled.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <div class="project-preview inventory-preview" aria-hidden="true">
+            <div class="preview-top"><span>StockFlow</span><strong>Inventory</strong></div>
+            <div class="metric-strip">
+              <b>1,284<small>products</small></b>
+              <b>43<small>suppliers</small></b>
+              <b>18<small>alerts</small></b>
+            </div>
+            <div class="table-lines"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="card-body">
+            <div class="card-kicker"><span>Inventory and Order Management Platform</span><b>Portfolio Project</b></div>
+            <h3>StockFlow</h3>
+            <p>A full-stack operations platform for managing products, warehouse stock, suppliers, purchase orders, sales orders, and business reporting.</p>
+            <p class="data-label">Simulated demo data: 1,284 products, 43 suppliers, 126 pending orders, 18 low-stock alerts.</p>
+            <div class="tag-list"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>REST API</span><span>Docker</span><span>JWT Authentication</span></div>
+            <ul class="feature-list">
+              <li>User login and role-based permissions</li>
+              <li>Inventory levels, low-stock warnings, and audit logs</li>
+              <li>Purchase orders, CSV import/export, reporting dashboard</li>
+            </ul>
+            <div class="card-actions">
+              <button class="btn btn-small btn-primary" type="button" data-project-open="stockflow">Case Study</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Demo Coming Soon</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Source Coming Soon</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-preview task-preview" aria-hidden="true">
+            <div class="preview-top"><span>TaskForge</span><strong>Board</strong></div>
+            <div class="kanban">
+              <div><b>Backlog</b><i></i><i></i></div>
+              <div><b>Build</b><i></i><i></i></div>
+              <div><b>Review</b><i></i><i></i></div>
+            </div>
+            <small>Demo users: Alex, Nina, Daniel, Sofia</small>
+          </div>
+          <div class="card-body">
+            <div class="card-kicker"><span>Project and Issue Tracking Platform</span><b>Demo Application</b></div>
+            <h3>TaskForge</h3>
+            <p>A team collaboration platform for managing projects, tasks, bugs, priorities, comments, activity, and deadlines.</p>
+            <p class="data-label">Demo users: Alex Morgan, Nina Patel, Daniel Kim, Sofia Reyes.</p>
+            <div class="tag-list"><span>React</span><span>TypeScript</span><span>Django</span><span>PostgreSQL</span><span>REST API</span><span>Redis</span><span>Celery</span></div>
+            <ul class="feature-list">
+              <li>Workspaces, project boards, issue creation, status management</li>
+              <li>Priority levels, comments, activity history, filters and search</li>
+              <li>Notifications and team workflow visibility</li>
+            </ul>
+            <div class="card-actions">
+              <button class="btn btn-small btn-primary" type="button" data-project-open="taskforge">Case Study</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Demo Coming Soon</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Source Coming Soon</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-preview api-preview" aria-hidden="true">
+            <div class="preview-top"><span>APIWatch</span><strong>Live</strong></div>
+            <div class="uptime-ring">99.98%</div>
+            <div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <small>Simulated monitoring data</small>
+          </div>
+          <div class="card-body">
+            <div class="card-kicker"><span>API Monitoring Dashboard</span><b>Portfolio Project</b></div>
+            <h3>APIWatch</h3>
+            <p>A monitoring platform for tracking API uptime, response time, failures, incidents, and endpoint health.</p>
+            <p class="data-label">Simulated monitoring data: 99.98% uptime, 142 ms average response, 24 endpoints monitored, 2 incidents this month.</p>
+            <div class="tag-list"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Scheduled Jobs</span><span>REST APIs</span><span>Charts</span><span>Docker</span></div>
+            <ul class="feature-list">
+              <li>Endpoint monitoring, uptime history, response-time charts</li>
+              <li>Incident logs, failure alerts, status filtering</li>
+              <li>Scheduled checks and error history</li>
+            </ul>
+            <div class="card-actions">
+              <button class="btn btn-small btn-primary" type="button" data-project-open="apiwatch">Case Study</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Demo Coming Soon</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Source Coming Soon</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-preview crm-preview" aria-hidden="true">
+            <div class="preview-top"><span>ClientDesk</span><strong>CRM</strong></div>
+            <div class="pipeline-columns">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="contact-row"><span></span><b>Lead Pipeline</b></div>
+            <small>Demo records only</small>
+          </div>
+          <div class="card-body">
+            <div class="card-kicker"><span>CRM and Client Management Platform</span><b>Concept Product</b></div>
+            <h3>ClientDesk</h3>
+            <p>A lightweight CRM for managing leads, clients, conversations, tasks, invoices, and sales activity.</p>
+            <p class="data-label">Demo records include fictional companies and contacts.</p>
+            <div class="tag-list"><span>React</span><span>FastAPI</span><span>PostgreSQL</span><span>Authentication</span><span>REST API</span><span>Responsive Design</span></div>
+            <ul class="feature-list">
+              <li>Contact management, lead pipeline, notes and tasks</li>
+              <li>Client status, invoice tracking, search and filters</li>
+              <li>Activity timeline for sales conversations</li>
+            </ul>
+            <div class="card-actions">
+              <button class="btn btn-small btn-primary" type="button" data-project-open="clientdesk">Case Study</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Demo Coming Soon</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Source Coming Soon</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal project-card-wide">
+          <div class="project-preview automation-preview" aria-hidden="true">
+            <div class="preview-top"><span>AutoFlow</span><strong>Jobs</strong></div>
+            <div class="flow-row"><i></i><span></span><i></i><span></span><i></i></div>
+            <div class="log-stack"><p>CSV validated</p><p>JSON transformed</p><p>Report generated</p></div>
+          </div>
+          <div class="card-body">
+            <div class="card-kicker"><span>Business Automation Toolkit</span><b>Portfolio Project</b></div>
+            <h3>AutoFlow</h3>
+            <p>A collection of automation workflows for processing files, validating data, generating reports, synchronizing APIs, and reducing repetitive work.</p>
+            <p class="data-label">Simulated application states and workflow logs are used for presentation.</p>
+            <div class="tag-list"><span>Python</span><span>REST APIs</span><span>CSV</span><span>JSON</span><span>Automation</span><span>Logging</span></div>
+            <ul class="feature-list">
+              <li>Batch file processing, CSV validation, JSON transformation</li>
+              <li>Automated reports, failed-task logs, API synchronization</li>
+              <li>Configurable workflows with structured error handling</li>
+            </ul>
+            <div class="card-actions">
+              <button class="btn btn-small btn-primary" type="button" data-project-open="autoflow">Case Study</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Demo Coming Soon</button>
+              <button class="btn btn-small btn-disabled" type="button" disabled>Source Coming Soon</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="about-grid">
+        <div class="section-heading align-left reveal">
+          <p class="eyebrow">About</p>
+          <h2>Practical software from idea to implementation.</h2>
+          <p>I build practical software products from idea to implementation. My work focuses on full-stack applications, backend APIs, automation systems, dashboards, and internal tools. I use AI-assisted development to accelerate implementation, debugging, testing, and iteration while keeping the final result structured, reviewed, and maintainable.</p>
+        </div>
+        <div class="highlight-grid reveal">
+          <article><strong>Full-Stack Applications</strong><span>Interfaces, workflows, auth, data models, and deployment-ready structure.</span></article>
+          <article><strong>Backend APIs</strong><span>Clean REST endpoints, validation, error handling, and integration logic.</span></article>
+          <article><strong>Automation Systems</strong><span>Reliable scripts and workflows for repetitive business processes.</span></article>
+          <article><strong>Internal Tools</strong><span>Dashboards and admin panels designed for real operational work.</span></article>
+          <article><strong>Debugging</strong><span>Careful issue tracing, regression checks, and maintainable fixes.</span></article>
+          <article><strong>Rapid Prototyping</strong><span>Fast iteration with realistic demo data and product-minded UX.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills-section" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Skills</p>
+        <h2>Tools for building usable software systems</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal"><h3>Frontend</h3><p>HTML, CSS, JavaScript, TypeScript, React, React Native, Responsive Design, Accessibility</p></article>
+        <article class="skill-card reveal"><h3>Backend</h3><p>Python, FastAPI, Django, REST APIs, Authentication, Webhooks, Background Jobs, Error Handling</p></article>
+        <article class="skill-card reveal"><h3>Database</h3><p>PostgreSQL, SQLite, SQL, Database Design, Data Validation</p></article>
+        <article class="skill-card reveal"><h3>Tools</h3><p>Git, GitHub, Docker, Render, GitHub Pages, Environment Variables, Logging, Testing, Debugging</p></article>
+        <article class="skill-card reveal"><h3>Automation</h3><p>Python Automation, CSV Processing, JSON Processing, API Integrations, File Workflows, Reporting Tools</p></article>
+        <article class="skill-card reveal"><h3>AI-Assisted Development</h3><p>Codex, Repository Analysis, Feature Implementation, Debugging, Test Generation, Code Review, Documentation, Rapid Prototyping</p></article>
+      </div>
+    </section>
+
+    <section class="section process-section" id="process">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Process</p>
+        <h2>A clear path from problem to maintainable software</h2>
+      </div>
+      <div class="process-grid">
+        <article class="process-step reveal"><span>01</span><h3>Understand</h3><p>Clarify the goal, users, constraints, and business workflow before writing code.</p></article>
+        <article class="process-step reveal"><span>02</span><h3>Plan</h3><p>Map the screens, data, API behavior, edge cases, and delivery path.</p></article>
+        <article class="process-step reveal"><span>03</span><h3>Build</h3><p>Implement the core flows with clean structure, practical UI, and maintainable logic.</p></article>
+        <article class="process-step reveal"><span>04</span><h3>Test</h3><p>Check responsive layout, interactions, validation, errors, and real user paths.</p></article>
+        <article class="process-step reveal"><span>05</span><h3>Deliver</h3><p>Prepare documentation, deployment steps, and the next improvements.</p></article>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="contact-panel reveal">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let's Build Something Useful</h2>
+          <p>Open to full-time roles, freelance work, and contract projects. I work remotely from Georgia and focus on software development, automation, APIs, dashboards, and internal tools.</p>
+        </div>
+        <div class="contact-list">
+          <a href="mailto:your.email@example.com">your.email@example.com</a>
+          <a href="https://github.com/lshbkrdz" target="_blank" rel="noreferrer">github.com/lshbkrdz</a>
+          <span>LinkedIn: add your profile URL</span>
+          <span>Location: Georgia</span>
+          <span>Work preference: Remote</span>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:your.email@example.com">Email Me</a>
+          <a class="btn btn-secondary" href="https://github.com/lshbkrdz" target="_blank" rel="noreferrer">View GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with HTML, CSS, and vanilla JavaScript for GitHub Pages.</p>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" data-modal>
+      <button class="modal-close" type="button" aria-label="Close project details" data-modal-close>&times;</button>
+      <p class="eyebrow" data-modal-status></p>
+      <h2 id="modal-title" data-modal-title></h2>
+      <p class="modal-type" data-modal-type></p>
+      <div class="modal-content" data-modal-content></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
