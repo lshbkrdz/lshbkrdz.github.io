@@ -663,12 +663,14 @@ h3 {
   color: var(--muted);
 }
 
-.task-screenshot-preview {
+.task-screenshot-preview,
+.project-screenshot-preview {
   display: grid;
   align-content: start;
 }
 
-.task-screenshot-preview img {
+.task-screenshot-preview img,
+.project-screenshot-preview img {
   width: 100%;
   aspect-ratio: 16 / 10;
   display: block;

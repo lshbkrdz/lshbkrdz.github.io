@@ -40,18 +40,26 @@ const projectDetails = {
   apiwatch: {
     title: "APIWatch",
     type: "API Monitoring Dashboard",
-    status: "Portfolio Project",
+    status: "Completed Portfolio Project",
     sections: {
       Problem: "API failures are expensive when teams discover them from users instead of monitoring. Teams need uptime, latency, incident history, and endpoint health in one place.",
-      Solution: "APIWatch tracks endpoint checks, response times, incidents, status filtering, scheduled checks, failure alerts, and error history in a dashboard designed for quick operational decisions.",
-      Architecture: "FastAPI provides the monitoring API, scheduled Python jobs execute HTTP checks, PostgreSQL stores historical results, and dashboard views summarize uptime, latency, and incident activity.",
-      "Main features": ["Endpoint monitoring", "Uptime history", "Response-time charts", "Incident logs", "Failure alerts", "Status filtering", "Scheduled checks", "Error history"],
-      "Technology stack": "Python, FastAPI, PostgreSQL, Scheduled Jobs, REST APIs, Charts, Docker.",
-      "Technical decisions": "Monitoring results are stored as timestamped events. Incidents are grouped from failed checks so the interface can show both individual failures and higher-level operational status.",
-      Challenges: "The main challenge is preventing noisy alerts while still reporting real failures quickly and clearly.",
-      "Testing approach": "Tests would include scheduled job behavior, timeout handling, incident grouping, status filtering, and response-time aggregation.",
-      "Demo data note": "Uptime, response time, endpoint count, and incident numbers are simulated monitoring metrics.",
-      "Future improvements": "Slack alerts, retry policies, public status pages, custom check intervals, webhook notifications, and multi-region checks."
+      Solution: "APIWatch is a working full-stack monitoring dashboard for registering endpoints, running manual and scheduled checks, storing response-time history, calculating uptime, grouping incidents, acknowledging incidents, and resetting a stable demo dataset.",
+      Architecture: "A React, TypeScript, and Vite frontend calls a FastAPI REST API. The backend uses SQLite for local storage, HTTPX for real endpoint checks, Pydantic validation, safe URL protection, simulated endpoint profiles, and a guarded local scheduler.",
+      "Monitoring engine": "Real endpoints are checked with HTTPX. Seeded portfolio endpoints use simulation profiles such as healthy, degraded, unstable, down, and timeout so the demo remains stable while still storing realistic check data.",
+      Scheduler: "A lightweight background scheduler starts with the FastAPI app, scans enabled endpoints, prevents overlapping checks for the same endpoint, and logs failures without crashing the API.",
+      "Safe URL validation": "The API rejects unsupported schemes, malformed URLs, embedded credentials, localhost, loopback, private-network, link-local, reserved, and metadata targets when public safety mode is enabled.",
+      "Incident grouping": "Failed checks open or update one open incident per endpoint. A later successful check resolves the open incident and records duration instead of creating duplicate incidents for every failure.",
+      "Metrics aggregation": "Dashboard uptime, response time, endpoint health counts, incident counts, response-time charts, uptime timeline, and recent checks are calculated from stored backend check records.",
+      Frontend: "The frontend includes demo login, metrics, SVG charts, endpoint CRUD, manual checks, filters, endpoint history, incident list/detail views, acknowledgement notes, reset confirmation, loading states, and mobile layouts.",
+      Backend: "FastAPI exposes health, auth, dashboard, endpoints, checks, incidents, activity, metadata, and reset endpoints with protected private routes and useful validation errors.",
+      Database: "SQLite stores demo users, endpoints, check results, incidents, and activity records for local development.",
+      Authentication: "Protected routes require the demo bearer token returned by login. Demo credentials are demo@apiwatch.dev and demo1234.",
+      "Main features": ["Endpoint management", "Manual API checks", "Simulated scheduled monitoring", "Response-time history", "Uptime calculations", "Incident grouping", "Incident resolution", "Incident acknowledgement", "Status filtering", "Safe URL validation", "Demo-data reset", "Automated tests"],
+      "Technology stack": "React, TypeScript, Vite, Python, FastAPI, SQLite, HTTPX, REST API, Pytest.",
+      Testing: "Backend tests cover authentication, protected routes, CRUD, URL validation, manual checks, timeout and unexpected-status handling, incident grouping, incident resolution, dashboard aggregation, filters, and demo reset. Frontend tests and production build were also verified.",
+      "Technical challenges": "The key challenge was making portfolio-safe monitoring realistic: stable simulated endpoints, real HTTP checks for user-added public URLs, protected URL validation, non-duplicating incidents, and charts driven by stored check data.",
+      "Demo data note": "Portfolio application using simulated demonstration monitoring data. Simulated endpoints are clearly distinguished from real HTTP endpoints.",
+      "Future improvements": "Production worker queue, notification channels, public status pages, multi-region checks, saved filters, incident severity levels, and CI badges."
     }
   },
   clientdesk: {
@@ -121,16 +129,19 @@ const projectEvidence = {
     architecture: "React/Vite frontend, FastAPI REST API, SQLite data layer, Pydantic validation, token-based demo session, seeded demo reset, activity timeline"
   },
   apiwatch: {
-    liveDemo: "https://placeholder.example/apiwatch-demo",
+    liveDemo: "",
+    liveDemoReady: false,
     repository: "https://github.com/lshbkrdz/apiwatch",
-    video: "https://placeholder.example/apiwatch-video",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
     caseStudy: "Current portfolio case study",
-    credentials: "No demo login yet; monitoring data shown here is simulated.",
-    stack: "Python, FastAPI, PostgreSQL, Scheduled Jobs, REST APIs, Charts, Docker",
-    deployment: "Planned: FastAPI service + scheduled check worker + PostgreSQL metrics store",
-    testStatus: "Planned automated tests: scheduled checks, timeout handling, incident grouping, metric summaries",
+    credentials: "demo@apiwatch.dev / demo1234",
+    stack: "React, TypeScript, Vite, Python, FastAPI, SQLite, HTTPX, REST API, Pytest",
+    deployment: "Local application verified. Public live deployment not completed yet.",
+    testStatus: "Backend: python -m pytest, 15 passed. Frontend: npm run test, 4 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-11",
-    architecture: "Scheduled endpoint checks, event storage, incident grouping, dashboard summary API, status filtering"
+    architecture: "React/Vite frontend, FastAPI REST API, SQLite storage, HTTPX monitor, simulated endpoint profiles, guarded scheduler, incident grouping, safe URL validation"
   },
   clientdesk: {
     liveDemo: "https://placeholder.example/clientdesk-demo",
@@ -192,7 +203,7 @@ function renderEvidence(projectId, variant = "card") {
   const videoValue = evidence.video
     ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not available yet";
-  const helperText = projectId === "stockflow" || projectId === "taskforge" ? "" : "<span>Placeholders until real links are added</span>";
+  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
