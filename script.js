@@ -12,7 +12,7 @@ const projectDetails = {
       "Technical decisions": "Inventory changes are modeled as auditable movement records instead of direct quantity edits. CSV imports run through row-level validation before any database writes. Dashboard totals are calculated from stored order states rather than hard-coded summary fields.",
       Challenges: "The main challenge is keeping stock counts accurate while pending purchase orders, reserved sales orders, returns, and manual adjustments all affect availability.",
       "Testing approach": "Test coverage would focus on authentication, permission checks, CSV validation, stock movement calculations, order-state transitions, and dashboard summary totals.",
-      "Demo data note": "The displayed product counts, supplier records, order totals, and low-stock alerts are simulated portfolio data.",
+      "Sample records note": "The displayed product counts, supplier records, order totals, and low-stock alerts use realistic sample operating records.",
       "Future improvements": "Barcode scanning, supplier portals, recurring purchase orders, export templates, and role-specific notification rules."
     }
   },
@@ -22,18 +22,18 @@ const projectDetails = {
     status: "Completed Portfolio Project",
     sections: {
       Problem: "Teams need a clear way to plan work, track bugs, discuss decisions, and see what changed without losing context across chats and documents.",
-      Solution: "TaskForge provides a working full-stack issue tracker with demo authentication, workspace and project management, issue CRUD, assignment, due dates, labels, comments, filters, dashboard statistics, activity history, and a protected demo-data reset.",
-      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. The backend validates requests with Pydantic, stores local development data in SQLite, seeds realistic demonstration records, and protects application routes with a simple bearer-token demo session.",
+      Solution: "TaskForge provides a working full-stack issue tracker with test authentication, workspace and project management, issue CRUD, assignment, due dates, labels, comments, filters, dashboard statistics, activity history, and a protected data reset.",
+      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. The backend validates requests with Pydantic, stores local development data in SQLite, seeds realistic project records, and protects application routes with a simple bearer-token test session.",
       Frontend: "The interface is a responsive dark admin application with dashboard metrics, project forms, issue filters, issue details, comments, activity timelines, loading states, empty states, validation feedback, destructive-action confirmations, and visible focus states.",
-      Backend: "FastAPI exposes health, authentication, dashboard, workspaces, projects, issues, comments, users, activity, and demo reset endpoints with useful error messages and reference validation.",
-      Database: "SQLite stores workspaces, projects, issues, comments, users, and activity entries for local development. Seed logic restores the original simulated dataset for portfolio review.",
-      Authentication: "The demo login uses demo@taskforge.dev and demo1234. The backend verifies the password and requires a bearer token for protected API actions.",
-      "Main features": ["Demo login", "Workspaces", "Project create/edit/delete", "Issue create/edit/delete", "Status and priority changes", "Assignees", "Due dates", "Labels", "Search and filters", "Comments", "Activity history", "Dashboard statistics", "Demo data reset"],
+      Backend: "FastAPI exposes health, authentication, dashboard, workspaces, projects, issues, comments, users, activity, and reset endpoints with useful error messages and reference validation.",
+      Database: "SQLite stores workspaces, projects, issues, comments, users, and activity entries for local development. Seed logic restores the original sample dataset for portfolio review.",
+      Authentication: "The test login uses demo@taskforge.dev and demo1234. The backend verifies the password and requires a bearer token for protected API actions.",
+      "Main features": ["Test login", "Workspaces", "Project create/edit/delete", "Issue create/edit/delete", "Status and priority changes", "Assignees", "Due dates", "Labels", "Search and filters", "Comments", "Activity history", "Dashboard statistics", "Data reset"],
       Validation: "The API prevents missing project, user, workspace, issue, and comment references, validates request payloads, and returns appropriate HTTP errors for invalid actions.",
       "Technology stack": "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pytest.",
-      "Testing approach": "Pytest covers health, successful login, invalid login, project creation, issue creation, issue update, issue deletion, filtering, comment creation, and demo reset. Vitest covers frontend helper logic, and the production frontend build was verified.",
+      "Testing approach": "Pytest covers health, successful login, invalid login, project creation, issue creation, issue update, issue deletion, filtering, comment creation, and data reset. Vitest covers frontend helper logic, and the production frontend build was verified.",
       "Technical challenges": "The main challenge was turning a portfolio preview into a complete local product with realistic seeded data, real API state, protected reset behavior, responsive layouts, and evidence screenshots captured from the running application.",
-      "Demo data note": "Portfolio application using simulated demonstration data. Alex Morgan, Nina Patel, Daniel Kim, and Sofia Reyes are fictional demo users.",
+      "Sample records note": "TaskForge includes seeded team-member and issue records for review. Alex Morgan, Nina Patel, Daniel Kim, and Sofia Reyes are sample users.",
       "Future improvements": "Public deployment, saved issue views, drag-and-drop board movement, file attachments, GitHub issue sync, CI test badges, and project-level reporting charts."
     }
   },
@@ -43,22 +43,22 @@ const projectDetails = {
     status: "Completed Portfolio Project",
     sections: {
       Problem: "API failures are expensive when teams discover them from users instead of monitoring. Teams need uptime, latency, incident history, and endpoint health in one place.",
-      Solution: "APIWatch is a working full-stack monitoring dashboard for registering endpoints, running manual and scheduled checks, storing response-time history, calculating uptime, grouping incidents, acknowledging incidents, and resetting a stable demo dataset.",
-      Architecture: "A React, TypeScript, and Vite frontend calls a FastAPI REST API. The backend uses SQLite for local storage, HTTPX for real endpoint checks, Pydantic validation, safe URL protection, simulated endpoint profiles, and a guarded local scheduler.",
-      "Monitoring engine": "Real endpoints are checked with HTTPX. Seeded portfolio endpoints use simulation profiles such as healthy, degraded, unstable, down, and timeout so the demo remains stable while still storing realistic check data.",
+      Solution: "APIWatch is a working full-stack monitoring dashboard for registering endpoints, running manual and scheduled checks, storing response-time history, calculating uptime, grouping incidents, acknowledging incidents, and resetting a stable sample dataset.",
+      Architecture: "A React, TypeScript, and Vite frontend calls a FastAPI REST API. The backend uses SQLite for local storage, HTTPX for real endpoint checks, Pydantic validation, safe URL protection, sample endpoint profiles, and a guarded local scheduler.",
+      "Monitoring engine": "Real endpoints are checked with HTTPX. Seeded portfolio endpoints use controlled profiles such as healthy, degraded, unstable, down, and timeout so the local review remains stable while still storing realistic check data.",
       Scheduler: "A lightweight background scheduler starts with the FastAPI app, scans enabled endpoints, prevents overlapping checks for the same endpoint, and logs failures without crashing the API.",
       "Safe URL validation": "The API rejects unsupported schemes, malformed URLs, embedded credentials, localhost, loopback, private-network, link-local, reserved, and metadata targets when public safety mode is enabled.",
       "Incident grouping": "Failed checks open or update one open incident per endpoint. A later successful check resolves the open incident and records duration instead of creating duplicate incidents for every failure.",
       "Metrics aggregation": "Dashboard uptime, response time, endpoint health counts, incident counts, response-time charts, uptime timeline, and recent checks are calculated from stored backend check records.",
-      Frontend: "The frontend includes demo login, metrics, SVG charts, endpoint CRUD, manual checks, filters, endpoint history, incident list/detail views, acknowledgement notes, reset confirmation, loading states, and mobile layouts.",
+      Frontend: "The frontend includes test login, metrics, SVG charts, endpoint CRUD, manual checks, filters, endpoint history, incident list/detail views, acknowledgement notes, reset confirmation, loading states, and mobile layouts.",
       Backend: "FastAPI exposes health, auth, dashboard, endpoints, checks, incidents, activity, metadata, and reset endpoints with protected private routes and useful validation errors.",
-      Database: "SQLite stores demo users, endpoints, check results, incidents, and activity records for local development.",
-      Authentication: "Protected routes require the demo bearer token returned by login. Demo credentials are demo@apiwatch.dev and demo1234.",
-      "Main features": ["Endpoint management", "Manual API checks", "Simulated scheduled monitoring", "Response-time history", "Uptime calculations", "Incident grouping", "Incident resolution", "Incident acknowledgement", "Status filtering", "Safe URL validation", "Demo-data reset", "Automated tests"],
+      Database: "SQLite stores users, endpoints, check results, incidents, and activity records for local development.",
+      Authentication: "Protected routes require the bearer token returned by login. Test credentials are demo@apiwatch.dev and demo1234.",
+      "Main features": ["Endpoint management", "Manual API checks", "Scheduled monitoring", "Response-time history", "Uptime calculations", "Incident grouping", "Incident resolution", "Incident acknowledgement", "Status filtering", "Safe URL validation", "Data reset", "Automated tests"],
       "Technology stack": "React, TypeScript, Vite, Python, FastAPI, SQLite, HTTPX, REST API, Pytest.",
-      Testing: "Backend tests cover authentication, protected routes, CRUD, URL validation, manual checks, timeout and unexpected-status handling, incident grouping, incident resolution, dashboard aggregation, filters, and demo reset. Frontend tests and production build were also verified.",
-      "Technical challenges": "The key challenge was making portfolio-safe monitoring realistic: stable simulated endpoints, real HTTP checks for user-added public URLs, protected URL validation, non-duplicating incidents, and charts driven by stored check data.",
-      "Demo data note": "Portfolio application using simulated demonstration monitoring data. Simulated endpoints are clearly distinguished from real HTTP endpoints.",
+      Testing: "Backend tests cover authentication, protected routes, CRUD, URL validation, manual checks, timeout and unexpected-status handling, incident grouping, incident resolution, dashboard aggregation, filters, and data reset. Frontend tests and production build were also verified.",
+      "Technical challenges": "The key challenge was making portfolio-safe monitoring realistic: stable sample endpoints, real HTTP checks for user-added public URLs, protected URL validation, non-duplicating incidents, and charts driven by stored check data.",
+      "Sample records note": "APIWatch includes controlled sample monitoring records. Seeded endpoints are clearly distinguished from real HTTP endpoints.",
       "Future improvements": "Production worker queue, notification channels, public status pages, multi-region checks, saved filters, incident severity levels, and CI badges."
     }
   },
@@ -68,11 +68,11 @@ const projectDetails = {
     status: "Completed Portfolio Project",
     sections: {
       Problem: "Freelancers and small teams often need a CRM that is lighter than enterprise tools but more reliable than scattered notes and spreadsheets.",
-      Solution: "ClientDesk provides a working full-stack CRM with demo authentication, contacts, companies, lead pipeline stages, notes, tasks, invoices, search, filters, CSV exports, activity history, and a protected demo-data reset.",
-      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. The backend validates requests with Pydantic, stores local development data in SQLite, hashes the demo password, issues bearer tokens, and seeds realistic fictional CRM records.",
-      Authentication: "The demo login uses demo@clientdesk.dev and demo1234. The password is stored as a PBKDF2 hash, and protected routes reject unauthenticated requests.",
+      Solution: "ClientDesk provides a working full-stack CRM with test authentication, contacts, companies, lead pipeline stages, notes, tasks, invoices, search, filters, CSV exports, activity history, and a protected data reset.",
+      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. The backend validates requests with Pydantic, stores local development data in SQLite, hashes the test password, issues bearer tokens, and seeds realistic CRM records.",
+      Authentication: "The test login uses demo@clientdesk.dev and demo1234. The password is stored as a PBKDF2 hash, and protected routes reject unauthenticated requests.",
       "Contact management": "Users can create, view, edit, search, filter, sort, open details for, and delete contacts. Contact details show company context, notes, open tasks, invoices, leads, and related activity.",
-      "Company management": "Users can create, update status for, delete, and review fictional demo companies such as Northstar Labs, Orbit Supply, Ember Studio, Meridian Works, and Clearpath Digital.",
+      "Company management": "Users can create, update status for, delete, and review seeded companies such as Northstar Labs, Orbit Supply, Ember Studio, Meridian Works, and Clearpath Digital.",
       "Lead pipeline": "Leads can be created, filtered, moved between New Lead, Contacted, Qualified, Proposal Sent, Negotiation, Won, and Lost, and each stage change records activity.",
       "Activity events": "The backend records contact, company, lead, note, task, invoice, pipeline, and reset events as timestamped activity entries shown in chronological order.",
       Tasks: "Tasks support creation, status updates, completion, reopening, deletion, priority badges, due dates, and filtering by status.",
@@ -81,11 +81,11 @@ const projectDetails = {
       Filters: "Contacts, leads, tasks, and invoices expose practical filters backed by API query parameters.",
       "CSV exports": "Contacts, leads, tasks, and invoices export from current SQLite records, not hard-coded frontend data.",
       Database: "SQLite stores users, contacts, companies, leads, notes, tasks, invoices, and activity entries for local development.",
-      Testing: "Pytest covers health, login, invalid login, protected-route rejection, password hashing, contact CRUD, company creation, lead creation, pipeline movement, search/filter combinations, note creation, task completion/reopen, invoice updates, activity ordering, CSV exports, demo reset, and dashboard aggregation. Vitest covers frontend presentation logic, and the production build was verified.",
+      Testing: "Pytest covers health, login, invalid login, protected-route rejection, password hashing, contact CRUD, company creation, lead creation, pipeline movement, search/filter combinations, note creation, task completion/reopen, invoice updates, activity ordering, CSV exports, data reset, and dashboard aggregation. Vitest covers frontend presentation logic, and the production build was verified.",
       "Technical challenges": "The main challenge was keeping the CRM lightweight while still making core workflows genuinely functional: related records, timeline activity, current-state exports, backend-derived dashboard totals, and responsive layouts.",
-      "Main features": ["Demo login", "Contact management", "Company management", "Lead pipeline", "Pipeline stage movement", "Notes", "Tasks", "Invoice tracking", "Search", "Filters", "Activity timeline", "CSV exports", "Demo-data reset"],
+      "Main features": ["Test login", "Contact management", "Company management", "Lead pipeline", "Pipeline stage movement", "Notes", "Tasks", "Invoice tracking", "Search", "Filters", "Activity timeline", "CSV exports", "Data reset"],
       "Technology stack": "React, TypeScript, Vite, Python, FastAPI, SQLite, REST API, Pytest, Responsive Design.",
-      "Demo data note": "Portfolio application using fictional demonstration companies, contacts, invoices, and activity records.",
+      "Sample records note": "ClientDesk includes seeded companies, contacts, invoices, and activity records for local review.",
       "Future improvements": "Email reminders, calendar synchronization, invoice PDF generation, import tools, custom fields, lead-source reporting, production database migration, multi-user workspaces, and role-based permissions."
     }
   },
@@ -94,21 +94,21 @@ const projectDetails = {
     type: "Restaurant Ordering and Kitchen Operations Platform",
     status: "Completed Portfolio Project",
     sections: {
-      Problem: "Restaurant ordering demos often stop at static menu cards, which does not prove that cart state, order validation, backend totals, kitchen workflows, reservations, and operational metrics actually work together.",
-      Solution: "BistroBoard is a working full-stack restaurant ordering application with menu browsing, search, dietary filters, cart checkout, simulated pickup and delivery orders, reservation requests, kitchen status management, dashboard metrics, activity history, and demo reset.",
-      Architecture: "A React, TypeScript, and Vite frontend calls a FastAPI REST API. SQLite stores menu items, orders, order items, reservations, and activity records for local development. Pydantic validates API input, and seeded demo data restores a realistic fictional restaurant state.",
+      Problem: "Restaurant ordering pages often stop at static menu cards, which does not prove that cart state, order validation, backend totals, kitchen workflows, reservations, and operational metrics actually work together.",
+      Solution: "BistroBoard is a working full-stack restaurant ordering application with menu browsing, search, dietary filters, cart checkout, pickup and delivery orders, reservation requests, kitchen status management, dashboard metrics, activity history, and data reset.",
+      Architecture: "A React, TypeScript, and Vite frontend calls a FastAPI REST API. SQLite stores menu items, orders, order items, reservations, and activity records for local development. Seed logic restores a realistic restaurant operating state.",
       Frontend: "The frontend uses a warm light restaurant design instead of another dark admin dashboard. It includes a customer menu, cart sidebar, checkout fields, receipt state, reservation form, kitchen board, loading and error states, empty states, responsive layout, and visible focus styles.",
-      Backend: "FastAPI exposes health, menu, category, order, order-status, reservation, dashboard, activity, and demo reset endpoints with useful HTTP errors and reference validation.",
-      Database: "SQLite stores fictional menu records, customers, orders, order items, reservations, and timeline activity. Order totals, discounts, fees, prep estimates, revenue, average ticket, and open-order counts are calculated from backend data.",
-      "Ordering workflow": "Users can add menu items, change quantities, apply the WELCOME10 promo code, choose pickup or delivery, enter contact details, submit a simulated order, and receive an order confirmation from the backend.",
-      Reservations: "The reservation view writes new fictional table requests through the API and updates dashboard metrics without hard-coded frontend totals.",
+      Backend: "FastAPI exposes health, menu, category, order, order-status, reservation, dashboard, activity, and reset endpoints with useful HTTP errors and reference validation.",
+      Database: "SQLite stores menu records, customers, orders, order items, reservations, and timeline activity. Order totals, discounts, fees, prep estimates, revenue, average ticket, and open-order counts are calculated from backend data.",
+      "Ordering workflow": "Users can add menu items, change quantities, apply the WELCOME10 promo code, choose pickup or delivery, enter contact details, submit an order, and receive an order confirmation from the backend.",
+      Reservations: "The reservation view writes new table requests through the API and updates dashboard metrics without hard-coded frontend totals.",
       "Kitchen operations": "The kitchen board displays current orders and lets staff move each order through received, confirmed, preparing, ready, out-for-delivery, completed, and cancelled states while recording activity.",
       Validation: "The API validates missing cart items, unavailable menu items, invalid fulfillment types, missing delivery addresses, invalid status transitions, and empty reservation/contact details.",
-      Testing: "Pytest covers health, menu listing, dashboard data, order creation, order status updates, order deletion, reservation creation, activity, validation errors, and demo reset. Vitest covers frontend helper logic, and the production frontend build was verified.",
-      "Technical challenges": "The main challenge was making a restaurant project feel product-grade while keeping it portfolio-safe: simulated payments, real backend-derived metrics, useful empty/error states, and screenshots captured from the running application.",
-      "Main features": ["Menu browsing", "Search and dietary filters", "Cart checkout", "Pickup and delivery validation", "Promo code discount", "Order receipt", "Kitchen status board", "Reservation requests", "Dashboard metrics", "Activity timeline", "Demo-data reset", "Responsive light UI"],
+      Testing: "Pytest covers health, menu listing, dashboard data, order creation, order status updates, order deletion, reservation creation, activity, validation errors, and data reset. Vitest covers frontend helper logic, and the production frontend build was verified.",
+      "Technical challenges": "The main challenge was making a restaurant project feel product-grade while keeping it portfolio-safe: payment capture is not connected, metrics are backend-derived, empty/error states are useful, and screenshots are captured from the running application.",
+      "Main features": ["Menu browsing", "Search and dietary filters", "Cart checkout", "Pickup and delivery validation", "Promo code discount", "Order receipt", "Kitchen status board", "Reservation requests", "Dashboard metrics", "Activity timeline", "Data reset", "Responsive light UI"],
       "Technology stack": "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pydantic, Pytest, Vitest, Responsive CSS.",
-      "Demo data note": "Portfolio application using fictional restaurant menu items, customers, orders, reservations, and simulated payments. No real payment processing is included.",
+      "Sample records note": "BistroBoard includes seeded restaurant menu, customer, order, reservation, and payment-method records. No real payment capture is connected.",
       "Future improvements": "Public deployment, staff authentication, table map, kitchen printer integration, payment provider integration, email/SMS confirmations, scheduled menu availability, and multi-location support."
     }
   },
@@ -125,7 +125,7 @@ const projectDetails = {
       "Technical decisions": "Workflow steps are designed as small reusable functions with clear inputs, outputs, retries, and failure states. Logs separate expected validation errors from unexpected runtime failures.",
       Challenges: "Automation needs careful validation and logging because silent failures can create bigger operational problems than manual work.",
       "Testing approach": "Tests would use fixture files for valid rows, invalid rows, malformed JSON, API failure responses, retry behavior, and report output checks.",
-      "Demo data note": "Workflow timestamps, row counts, transformed files, and report names are simulated portfolio examples.",
+      "Sample records note": "Workflow timestamps, row counts, transformed files, and report names are sample portfolio examples.",
       "Future improvements": "A configuration UI, scheduled runs, email summaries, webhook triggers, cloud storage integrations, and richer reporting templates."
     }
   }
@@ -133,13 +133,13 @@ const projectDetails = {
 
 const projectEvidence = {
   stockflow: {
-    liveDemo: "https://placeholder.example/stockflow-demo",
+    liveDemo: "https://placeholder.example/stockflow-preview",
     repository: "https://github.com/lshbkrdz/stockflow",
     repositoryReady: true,
     video: "https://youtu.be/L9d5Kerptoo",
     videoReady: true,
     caseStudy: "Current portfolio case study",
-    credentials: "Demo login will be added when the deployed app is ready.",
+    credentials: "Access details will be added when the deployed app is ready.",
     stack: "React, TypeScript, FastAPI, PostgreSQL, REST API, Docker, JWT Authentication",
     deployment: "Planned: Render backend + managed PostgreSQL + static frontend deployment",
     testStatus: "Planned automated tests: auth, imports, stock movement, permissions, reporting",
@@ -159,7 +159,7 @@ const projectEvidence = {
     deployment: "Local application verified. Public live deployment not completed yet.",
     testStatus: "Backend: python -m pytest, 8 passed. Frontend: npm run test, 2 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-11",
-    architecture: "React/Vite frontend, FastAPI REST API, SQLite data layer, Pydantic validation, token-based demo session, seeded demo reset, activity timeline"
+    architecture: "React/Vite frontend, FastAPI REST API, SQLite data layer, Pydantic validation, token-based test session, seeded reset, activity timeline"
   },
   apiwatch: {
     liveDemo: "",
@@ -174,7 +174,7 @@ const projectEvidence = {
     deployment: "Local application verified. Public live deployment not completed yet.",
     testStatus: "Backend: python -m pytest, 15 passed. Frontend: npm run test, 4 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-11",
-    architecture: "React/Vite frontend, FastAPI REST API, SQLite storage, HTTPX monitor, simulated endpoint profiles, guarded scheduler, incident grouping, safe URL validation"
+    architecture: "React/Vite frontend, FastAPI REST API, SQLite storage, HTTPX monitor, controlled endpoint profiles, guarded scheduler, incident grouping, safe URL validation"
   },
   clientdesk: {
     liveDemo: "",
@@ -189,30 +189,29 @@ const projectEvidence = {
     deployment: "Local application verified. Public live deployment not completed yet.",
     testStatus: "Backend: python -m pytest, 16 passed. Frontend: npm run test, 6 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-11",
-    architecture: "React/Vite frontend, FastAPI REST API, SQLite CRM data model, Pydantic validation, token-based demo auth, seeded demo reset, timeline activity, CSV export layer"
+    architecture: "React/Vite frontend, FastAPI REST API, SQLite CRM data model, Pydantic validation, token-based test auth, seeded reset, timeline activity, CSV export layer"
   },
   bistroboard: {
     liveDemo: "",
     liveDemoReady: false,
-    repository: "",
-    repositoryReady: false,
-    repositoryText: "GitHub repository not created yet. Intended public repository: https://github.com/lshbkrdz/bistroboard",
+    repository: "https://github.com/lshbkrdz/bistroboard",
+    repositoryReady: true,
     video: "",
     videoReady: false,
     caseStudy: "Current portfolio case study",
-    credentials: "No login required. Checkout, reservations, orders, and payments use simulated demonstration data.",
+    credentials: "No login required. Checkout, reservations, orders, and payment-method records are seeded for local review.",
     stack: "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pydantic, Pytest, Vitest, Responsive CSS",
     deployment: "Local application verified. Public live deployment not completed yet.",
     testStatus: "Backend: python -m pytest, 10 passed. Frontend: npm run test, 3 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-29",
-    architecture: "React/Vite customer ordering frontend, FastAPI REST API, SQLite restaurant data model, Pydantic validation, seeded demo reset, kitchen status workflow, activity timeline"
+    architecture: "React/Vite customer ordering frontend, FastAPI REST API, SQLite restaurant data model, Pydantic validation, seeded reset, kitchen status workflow, activity timeline"
   },
   autoflow: {
-    liveDemo: "https://placeholder.example/autoflow-demo",
+    liveDemo: "https://placeholder.example/autoflow-preview",
     repository: "https://github.com/lshbkrdz/autoflow",
-    video: "https://placeholder.example/autoflow-video",
+    video: "https://placeholder.example/autoflow-walkthrough",
     caseStudy: "Current portfolio case study",
-    credentials: "No login required for planned CLI/workflow demos.",
+    credentials: "No login required for planned CLI/workflow previews.",
     stack: "Python, REST APIs, CSV, JSON, Automation, Logging",
     deployment: "Planned: repository workflows, runnable scripts, sample input/output fixtures, optional dashboard wrapper",
     testStatus: "Planned automated tests: CSV fixtures, JSON transforms, API failure handling, retry behavior, report output",
@@ -240,8 +239,8 @@ function renderEvidence(projectId, variant = "card") {
 
   const compact = variant === "card";
   const liveDemoButton = evidence.liveDemoReady
-    ? `<a class="btn btn-small btn-secondary" href="${evidence.liveDemo}" target="_blank" rel="noopener noreferrer">Live Demo</a>`
-    : `<button class="btn btn-small btn-disabled" type="button" disabled>Live Demo — Coming Soon</button>`;
+    ? `<a class="btn btn-small btn-secondary" href="${evidence.liveDemo}" target="_blank" rel="noopener noreferrer">Live Preview</a>`
+    : `<button class="btn btn-small btn-disabled" type="button" disabled>Live Preview - Coming Soon</button>`;
   const liveDemoValue = evidence.liveDemo
     ? `${evidence.liveDemo}${evidence.liveDemoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not deployed yet";
@@ -271,11 +270,11 @@ function renderEvidence(projectId, variant = "card") {
         <button class="btn btn-small btn-primary" type="button" data-project-open="${projectId}">Technical Case Study</button>
       </div>
       <dl class="evidence-list">
-        <div><dt>Live Demo</dt><dd>${liveDemoValue}</dd></div>
+        <div><dt>Live Preview</dt><dd>${liveDemoValue}</dd></div>
         <div><dt>Public GitHub Repository</dt><dd>${repositoryValue}${repositoryLabel}</dd></div>
         <div><dt>Video Walkthrough</dt><dd>${videoValue}</dd></div>
         <div><dt>Technical Case Study</dt><dd>${evidence.caseStudy}</dd></div>
-        <div><dt>Demo Login Credentials</dt><dd>${evidence.credentials}</dd></div>
+        <div><dt>Access Credentials</dt><dd>${evidence.credentials}</dd></div>
         <div><dt>Technology Stack</dt><dd>${evidence.stack}</dd></div>
         <div><dt>Deployment Information</dt><dd>${evidence.deployment}</dd></div>
         <div><dt>Test Status</dt><dd>${evidence.testStatus}</dd></div>

@@ -68,11 +68,11 @@ Project Evidence content is stored in `script.js` inside the reusable `projectEv
 
 Each featured project has fields for:
 
-- Live Demo
+- Live Preview
 - Public GitHub Repository
 - Video Walkthrough
 - Technical Case Study
-- Demo Login Credentials
+- Access Credentials
 - Technology Stack
 - Deployment Information
 - Test Status
@@ -89,7 +89,7 @@ Example:
 
 ```js
 stockflow: {
-  liveDemo: "https://your-real-demo-url.example",
+  liveDemo: "https://your-real-preview-url.example",
   repository: "https://github.com/lshbkrdz/stockflow",
   repositoryReady: true,
   video: "https://youtube.com/watch?v=your-video-id",
@@ -102,11 +102,11 @@ stockflow: {
 
 Replace the `repository` placeholder with the real public GitHub repository URL. Set `repositoryReady: true` only after the repository exists and is public.
 
-### Live Demo
+### Live Preview
 
-Replace the `liveDemo` placeholder with the deployed application URL. Enable the Live Demo button only after the deployment is real and publicly accessible.
+Replace the `liveDemo` placeholder with the deployed application URL. Enable the Live Preview button only after the deployment is real and publicly accessible.
 
-### Demo Video
+### Walkthrough Video
 
 Replace the `video` placeholder with a YouTube, Loom, or direct walkthrough URL. Enable the Video Walkthrough button only after the video exists.
 
@@ -118,21 +118,20 @@ The current Technical Case Study button opens the project modal. Add a separate 
 
 Use `testStatus` for a readable status such as `Passing - GitHub Actions`. If you add a badge image later, place it in `assets/images/` and reference it from the evidence renderer.
 
-## Simulated Data
+## Sample Records
 
-The current portfolio intentionally uses realistic fictional portfolio data. It is clearly labeled with terms such as:
+Portfolio projects can use realistic seeded records so dashboards, tables, charts, search, filters, and workflows can be reviewed immediately.
 
-- Portfolio Project
-- Demo Application
-- Concept Product
-- Simulated demo data
-- Simulated monitoring data
-- Demo users
-- Demo records
+Use professional wording such as:
 
-Portfolio applications may use simulated demo data for users, orders, metrics, alerts, and dashboards. Project Evidence links are reserved for real source code, real repositories, deployed demos, walkthrough videos, test results, and architecture notes as those assets become available.
+- Completed Portfolio Project
+- Working full-stack application
+- Seeded records
+- Sample operating snapshot
+- Test account
+- Local application verified
 
-Do not present fictional demo data as real client usage, real revenue, or real production results.
+Project Evidence links are reserved for real source code, real repositories, deployed previews, walkthrough videos, test results, and architecture notes as those assets become available.
 
 ## Images
 
