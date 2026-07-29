@@ -112,6 +112,27 @@ const projectDetails = {
       "Future improvements": "Public deployment, staff authentication, table map, kitchen printer integration, payment provider integration, email/SMS confirmations, scheduled menu availability, and multi-location support."
     }
   },
+  reservehub: {
+    title: "ReserveHub",
+    type: "Appointment Booking Platform",
+    status: "Completed Portfolio Project",
+    sections: {
+      Problem: "Service businesses need a reliable way to publish services, show available staff, accept bookings, prevent double-booked time slots, and manage appointment status without relying on spreadsheets or scattered messages.",
+      Solution: "ReserveHub is a working full-stack appointment booking platform with public booking, service catalog, staff matching, availability-based slots, appointment CRUD, status workflows, search, filters, dashboard metrics, activity history, and sample-record restoration.",
+      Architecture: "A React, TypeScript, and Vite frontend communicates with a FastAPI REST API. SQLite stores business settings, services, staff, service coverage, availability, blocked times, appointments, and activity. Backend logic calculates slots and rejects overlapping bookings.",
+      Frontend: "The frontend uses a light, professional service-business interface with a public booking page, admin schedule view, service catalog, staff cards, loading states, empty states, alerts, responsive layout, and visible focus states.",
+      Backend: "FastAPI exposes health, settings, services, staff, slots, appointments, appointment status, dashboard, activity, and restore endpoints with Pydantic validation and useful HTTP errors.",
+      Database: "SQLite stores normalized services, staff members, staff-service coverage, availability windows, blocked times, appointments, and activity entries for local development.",
+      "Booking workflow": "Users choose a service, matching staff member, date, available time slot, and customer details. The API calculates the appointment end time from service duration and prevents conflicts before saving.",
+      "Schedule operations": "The admin view supports appointment search, status filtering, status changes, dashboard metrics, and sample-record restoration.",
+      Validation: "The API validates services, staff-service relationships, appointment date, HH:MM time format, staff availability, blocked times, and double-booking conflicts.",
+      Testing: "Pytest covers health, service/staff availability, slot generation, appointment creation, double-booking rejection, invalid staff-service matching, status updates, search/filtering, dashboard data, deletion, and sample restore. Vitest covers frontend helper logic, and the production frontend build was verified.",
+      "Main features": ["Public booking", "Service catalog", "Staff matching", "Availability slots", "Double-booking prevention", "Appointment CRUD", "Status workflow", "Search and filters", "Dashboard metrics", "Activity history", "Sample-record restore", "Responsive light UI"],
+      "Technology stack": "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pydantic, Pytest, Vitest, Responsive CSS.",
+      "Sample records note": "ReserveHub includes seeded service, staff, availability, appointment, and activity records for local review.",
+      "Future improvements": "Admin authentication, email confirmations, calendar export, staff-specific booking links, recurring availability editor, payment deposits, multi-location support, deployment pipeline, and test badges."
+    }
+  },
   autoflow: {
     title: "AutoFlow",
     type: "Business Automation Toolkit",
@@ -206,6 +227,21 @@ const projectEvidence = {
     lastUpdated: "2026-07-29",
     architecture: "React/Vite customer ordering frontend, FastAPI REST API, SQLite restaurant data model, Pydantic validation, seeded reset, kitchen status workflow, activity timeline"
   },
+  reservehub: {
+    liveDemo: "",
+    liveDemoReady: false,
+    repository: "https://github.com/lshbkrdz/ReserveHub",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
+    caseStudy: "Current portfolio case study",
+    credentials: "No login required for the public booking flow. Admin schedule tools run locally without authentication in this portfolio build.",
+    stack: "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pydantic, Pytest, Vitest, Responsive CSS",
+    deployment: "Local application verified. Public live deployment not completed yet.",
+    testStatus: "Backend: python -m pytest, 11 passed. Frontend: npm run test, 4 passed. Production build completed with npm run build.",
+    lastUpdated: "2026-07-29",
+    architecture: "React/Vite booking frontend, FastAPI REST API, SQLite appointment data model, Pydantic validation, staff-service matching, availability slot engine, double-booking protection, activity timeline"
+  },
   autoflow: {
     liveDemo: "https://placeholder.example/autoflow-preview",
     repository: "https://github.com/lshbkrdz/autoflow",
@@ -255,7 +291,7 @@ function renderEvidence(projectId, variant = "card") {
   const videoValue = evidence.video
     ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not available yet";
-  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" ? "" : "<span>Placeholders until real links are added</span>";
+  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" || projectId === "reservehub" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
