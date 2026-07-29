@@ -89,6 +89,29 @@ const projectDetails = {
       "Future improvements": "Email reminders, calendar synchronization, invoice PDF generation, import tools, custom fields, lead-source reporting, production database migration, multi-user workspaces, and role-based permissions."
     }
   },
+  bistroboard: {
+    title: "BistroBoard",
+    type: "Restaurant Ordering and Kitchen Operations Platform",
+    status: "Completed Portfolio Project",
+    sections: {
+      Problem: "Restaurant ordering demos often stop at static menu cards, which does not prove that cart state, order validation, backend totals, kitchen workflows, reservations, and operational metrics actually work together.",
+      Solution: "BistroBoard is a working full-stack restaurant ordering application with menu browsing, search, dietary filters, cart checkout, simulated pickup and delivery orders, reservation requests, kitchen status management, dashboard metrics, activity history, and demo reset.",
+      Architecture: "A React, TypeScript, and Vite frontend calls a FastAPI REST API. SQLite stores menu items, orders, order items, reservations, and activity records for local development. Pydantic validates API input, and seeded demo data restores a realistic fictional restaurant state.",
+      Frontend: "The frontend uses a warm light restaurant design instead of another dark admin dashboard. It includes a customer menu, cart sidebar, checkout fields, receipt state, reservation form, kitchen board, loading and error states, empty states, responsive layout, and visible focus styles.",
+      Backend: "FastAPI exposes health, menu, category, order, order-status, reservation, dashboard, activity, and demo reset endpoints with useful HTTP errors and reference validation.",
+      Database: "SQLite stores fictional menu records, customers, orders, order items, reservations, and timeline activity. Order totals, discounts, fees, prep estimates, revenue, average ticket, and open-order counts are calculated from backend data.",
+      "Ordering workflow": "Users can add menu items, change quantities, apply the WELCOME10 promo code, choose pickup or delivery, enter contact details, submit a simulated order, and receive an order confirmation from the backend.",
+      Reservations: "The reservation view writes new fictional table requests through the API and updates dashboard metrics without hard-coded frontend totals.",
+      "Kitchen operations": "The kitchen board displays current orders and lets staff move each order through received, confirmed, preparing, ready, out-for-delivery, completed, and cancelled states while recording activity.",
+      Validation: "The API validates missing cart items, unavailable menu items, invalid fulfillment types, missing delivery addresses, invalid status transitions, and empty reservation/contact details.",
+      Testing: "Pytest covers health, menu listing, dashboard data, order creation, order status updates, order deletion, reservation creation, activity, validation errors, and demo reset. Vitest covers frontend helper logic, and the production frontend build was verified.",
+      "Technical challenges": "The main challenge was making a restaurant project feel product-grade while keeping it portfolio-safe: simulated payments, real backend-derived metrics, useful empty/error states, and screenshots captured from the running application.",
+      "Main features": ["Menu browsing", "Search and dietary filters", "Cart checkout", "Pickup and delivery validation", "Promo code discount", "Order receipt", "Kitchen status board", "Reservation requests", "Dashboard metrics", "Activity timeline", "Demo-data reset", "Responsive light UI"],
+      "Technology stack": "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pydantic, Pytest, Vitest, Responsive CSS.",
+      "Demo data note": "Portfolio application using fictional restaurant menu items, customers, orders, reservations, and simulated payments. No real payment processing is included.",
+      "Future improvements": "Public deployment, staff authentication, table map, kitchen printer integration, payment provider integration, email/SMS confirmations, scheduled menu availability, and multi-location support."
+    }
+  },
   autoflow: {
     title: "AutoFlow",
     type: "Business Automation Toolkit",
@@ -168,6 +191,22 @@ const projectEvidence = {
     lastUpdated: "2026-07-11",
     architecture: "React/Vite frontend, FastAPI REST API, SQLite CRM data model, Pydantic validation, token-based demo auth, seeded demo reset, timeline activity, CSV export layer"
   },
+  bistroboard: {
+    liveDemo: "",
+    liveDemoReady: false,
+    repository: "",
+    repositoryReady: false,
+    repositoryText: "GitHub repository not created yet. Intended public repository: https://github.com/lshbkrdz/bistroboard",
+    video: "",
+    videoReady: false,
+    caseStudy: "Current portfolio case study",
+    credentials: "No login required. Checkout, reservations, orders, and payments use simulated demonstration data.",
+    stack: "React, TypeScript, Vite, FastAPI, Python, SQLite, REST API, Pydantic, Pytest, Vitest, Responsive CSS",
+    deployment: "Local application verified. Public live deployment not completed yet.",
+    testStatus: "Backend: python -m pytest, 10 passed. Frontend: npm run test, 3 passed. Production build completed with npm run build.",
+    lastUpdated: "2026-07-29",
+    architecture: "React/Vite customer ordering frontend, FastAPI REST API, SQLite restaurant data model, Pydantic validation, seeded demo reset, kitchen status workflow, activity timeline"
+  },
   autoflow: {
     liveDemo: "https://placeholder.example/autoflow-demo",
     repository: "https://github.com/lshbkrdz/autoflow",
@@ -209,14 +248,15 @@ function renderEvidence(projectId, variant = "card") {
   const repositoryButton = evidence.repositoryReady
     ? `<a class="btn btn-small btn-secondary" href="${evidence.repository}" target="_blank" rel="noopener noreferrer">Public GitHub Repository</a>`
     : `<button class="btn btn-small btn-disabled" type="button" disabled>Public GitHub Repository Coming Soon</button>`;
-  const repositoryLabel = evidence.repositoryReady ? "" : " <span>placeholder URL</span>";
+  const repositoryValue = evidence.repository || evidence.repositoryText || "Not available yet";
+  const repositoryLabel = !evidence.repositoryReady && evidence.repository ? " <span>placeholder URL</span>" : "";
   const videoButton = evidence.videoReady
     ? `<a class="btn btn-small btn-secondary" href="${evidence.video}" target="_blank" rel="noopener noreferrer">Watch Video Walkthrough</a>`
     : `<button class="btn btn-small btn-disabled" type="button" disabled>Video Walkthrough Coming Soon</button>`;
   const videoValue = evidence.video
     ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not available yet";
-  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" ? "" : "<span>Placeholders until real links are added</span>";
+  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
@@ -232,7 +272,7 @@ function renderEvidence(projectId, variant = "card") {
       </div>
       <dl class="evidence-list">
         <div><dt>Live Demo</dt><dd>${liveDemoValue}</dd></div>
-        <div><dt>Public GitHub Repository</dt><dd>${evidence.repository}${repositoryLabel}</dd></div>
+        <div><dt>Public GitHub Repository</dt><dd>${repositoryValue}${repositoryLabel}</dd></div>
         <div><dt>Video Walkthrough</dt><dd>${videoValue}</dd></div>
         <div><dt>Technical Case Study</dt><dd>${evidence.caseStudy}</dd></div>
         <div><dt>Demo Login Credentials</dt><dd>${evidence.credentials}</dd></div>
