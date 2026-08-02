@@ -1,4 +1,26 @@
 const projectDetails = {
+  resolveai: {
+    title: "ResolveAI",
+    type: "AI Customer Support Operations Platform",
+    status: "Flagship Full-Stack Project",
+    sections: {
+      Problem: "Support teams need one reliable workspace for customer conversations, internal ownership, knowledge retrieval, response quality, and operational reporting. Fragmented inboxes and ungrounded AI suggestions make it difficult to maintain speed without losing accuracy or accountability.",
+      Solution: "ResolveAI combines organization-scoped ticket operations, customer messages, assignments, priorities, knowledge management, grounded AI response drafts, human approval, notifications, analytics, and audit history in a single working application.",
+      Architecture: "A Next.js and TypeScript frontend uses TanStack Query to communicate with a versioned FastAPI REST API. SQLAlchemy provides the data layer, Alembic manages migrations, PostgreSQL with pgvector is prepared for production retrieval, Redis and Celery support background work, and Docker Compose defines the local service topology.",
+      Frontend: "The responsive support workspace includes a ticket inbox, detailed conversation view, dashboard metrics, analytics, knowledge management, team settings, notifications, loading and error states, keyboard-visible focus styling, and mobile layouts without horizontal overflow.",
+      Backend: "FastAPI routes are separated from authentication, authorization, database, AI-provider, ticket, knowledge, and audit services. Requests use Pydantic validation, organization context is enforced on protected resources, and API errors return useful status codes and messages.",
+      Database: "The domain model covers organizations, members, invitations, customers, tickets, messages, knowledge documents and chunks, AI drafts and citations, notifications, audit logs, usage events, refresh tokens, subscriptions, and processed webhook events.",
+      Authentication: "Passwords are hashed with bcrypt. The API issues short-lived JWT access tokens and stores hashed refresh tokens that rotate on use. Centralized roles and permissions cover owner, admin, agent, and viewer access while organization scoping protects tenant data.",
+      "AI and retrieval": "Knowledge files are parsed into deterministic chunks, embedded through a provider boundary, and retrieved for ticket context. Draft responses include citations and remain pending until a human agent reviews and approves them. The project can run locally with a deterministic provider and supports an OpenAI-compatible provider through environment configuration.",
+      "Main features": ["Organization-scoped authentication", "Role-based permissions", "Ticket inbox and filters", "Assignments and priorities", "Customer message history", "Knowledge document ingestion", "Grounded response drafts", "Source citations", "Human approval workflow", "Dashboard analytics", "Notifications", "Audit history", "AI usage tracking", "Repeatable seeded data"],
+      Validation: "The backend validates organization membership, role permissions, ticket and customer references, knowledge uploads, message payloads, invitation data, refresh-token state, and webhook signatures. Sensitive configuration is environment-driven and excluded from source control.",
+      Testing: "Pytest completed with 9 passing backend tests. Ruff checks, frontend linting, a Vitest test, the Next.js production build, the Alembic migration, seed reset, npm security audit, desktop and mobile browser workflows, and browser-console checks were all completed successfully.",
+      "Technical challenges": "The central challenge was keeping AI assistance auditable and subordinate to the support workflow. ResolveAI stores citations separately, keeps generated drafts in a review state, records meaningful actions, and maintains organization boundaries across every protected operation.",
+      "Technology stack": "Next.js, React, TypeScript, TanStack Query, Recharts, FastAPI, Python, Pydantic, SQLAlchemy, Alembic, PostgreSQL, pgvector, Redis, Celery, Docker Compose, Pytest, Vitest, GitHub Actions.",
+      "Sample records note": "ResolveAI includes fictional organizations, customers, tickets, messages, knowledge articles, AI drafts, and activity records so reviewers can inspect complete support workflows without exposing real customer information.",
+      "Future improvements": "Public deployment, production object storage, live event transport, outbound email delivery, invitation acceptance and password-reset screens, Stripe checkout and billing portal flows, PDF ingestion, and staging verification for external AI providers."
+    }
+  },
   stockflow: {
     title: "StockFlow",
     type: "Inventory and Order Management Platform",
@@ -153,6 +175,21 @@ const projectDetails = {
 };
 
 const projectEvidence = {
+  resolveai: {
+    liveDemo: "",
+    liveDemoReady: false,
+    repository: "https://github.com/lshbkrdz/ResolveAI",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
+    caseStudy: "Verified implementation case study",
+    credentials: "agent@demo.resolveai.app / DemoPassword123! (seeded local reviewer account)",
+    stack: "Next.js, React, TypeScript, FastAPI, Python, SQLAlchemy, Alembic, PostgreSQL, pgvector, Redis, Celery, Docker Compose, Pytest, Vitest",
+    deployment: "Local application verified. Docker deployment configuration is included; a public live deployment has not been completed.",
+    testStatus: "Backend: 9 Pytest tests passed. Ruff, frontend lint, Vitest, Next.js production build, migrations, seed reset, npm audit, desktop/mobile workflows, and browser-console checks passed.",
+    lastUpdated: "2026-08-02",
+    architecture: "Next.js support workspace, versioned FastAPI REST API, organization-scoped SQLAlchemy domain, JWT and rotating refresh tokens, knowledge retrieval and cited AI-draft pipeline, Celery/Redis background-work layer, PostgreSQL/pgvector deployment path"
+  },
   stockflow: {
     liveDemo: "https://placeholder.example/stockflow-preview",
     repository: "https://github.com/lshbkrdz/stockflow",
@@ -291,7 +328,7 @@ function renderEvidence(projectId, variant = "card") {
   const videoValue = evidence.video
     ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not available yet";
-  const helperText = projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" || projectId === "reservehub" ? "" : "<span>Placeholders until real links are added</span>";
+  const helperText = projectId === "resolveai" || projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" || projectId === "reservehub" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">
