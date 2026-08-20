@@ -1,6 +1,6 @@
 # Lasha Bakuradze Portfolio
 
-Premium static developer portfolio for Lasha Bakuradze, focused on full-stack software development, web applications, backend APIs, automation systems, dashboards, internal tools, and AI-assisted development workflows. The selected work includes Humanizer Studio, a local-first writing analysis and rewriting application with a public repository and verified automated test coverage.
+Premium static developer portfolio for Lasha Bakuradze, focused on full-stack software development, mobile and web applications, backend APIs, automation systems, dashboards, internal tools, and AI-assisted development workflows. Selected work includes CarCure, an Expo React Native vehicle-damage assessment app with location-aware repair pricing, and Humanizer Studio, a local-first writing analysis and rewriting application.
 
 The site is built for GitHub Pages and uses only HTML, CSS, and vanilla JavaScript. There is no Node.js, npm, backend service, database, API key, or build step required.
 

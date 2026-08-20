@@ -1,4 +1,22 @@
 const projectDetails = {
+  carcure: {
+    title: "CarCure",
+    type: "AI Vehicle Damage Assessment App",
+    status: "Production Mobile Project",
+    sections: {
+      Problem: "Drivers and vehicle buyers often receive incomplete repair expectations from a few collision photos. Costs also vary significantly by country, currency, labor market, vehicle, damage severity, parts availability, and possible hidden structural or mechanical damage.",
+      Solution: "CarCure turns up to three vehicle photos and optional vehicle details into a structured damage assessment. It identifies visible damage, highlights hidden areas that require inspection, estimates an itemized repair range for the user's market, and communicates safety and drivability concerns without presenting the result as a guaranteed shop quote.",
+      Architecture: "The public Expo React Native frontend handles image selection, camera capture, localization, authentication screens, results, and responsive mobile interaction. It communicates with a separately maintained private production API; backend source code and credentials are intentionally not published with the portfolio project.",
+      Frontend: "The mobile interface includes a compact responsive header, multi-image assessment flow, vehicle and damage notes, analysis progress, itemized results, account access, language selection, safe-area handling, and keyboard-aware forms that keep primary actions reachable.",
+      "Pricing approach": "Estimates are localized to the user's country and currency instead of using a single-country price table. The assessment accounts for severity, likely parts, labor, paint and materials, structural work, safety systems, and a clearly separated hidden-damage contingency.",
+      "Main features": ["Up to three damage photos", "Camera and photo-library input", "AI-assisted damage identification", "Itemized repair plan", "Location-aware prices and currency", "Visible and possible hidden damage", "Safety and drivability guidance", "Vehicle details and damage notes", "English, Georgian, and Russian localization", "Authentication and account creation", "Responsive Android and iOS layouts"],
+      "Product safeguards": "Results distinguish visible findings from possible hidden damage, surface uncertainty, recommend professional inspection for structural or safety-critical concerns, and avoid silently treating a photo estimate as a final repair invoice.",
+      Performance: "Screenshots are compressed, interface motion is kept lightweight, long content remains scrollable, and the mobile layout accounts for device safe areas and the on-screen keyboard to avoid obscuring controls.",
+      "Technology stack": "Expo, React Native, TypeScript, Expo Router, EAS Build, image and camera integrations, internationalization, location-aware pricing, and a private production API.",
+      Distribution: "The Android app uses the existing com.carcure.app package and is prepared for signed Android App Bundle distribution through Google Play closed testing.",
+      "Future improvements": "Expand calibrated regional repair datasets, add more vehicle-specific parts intelligence, improve confidence scoring with additional photo angles, and compare completed estimates with verified shop invoices while preserving user privacy."
+    }
+  },
   resolveai: {
     title: "ResolveAI",
     type: "AI Customer Support Operations Platform",
@@ -194,6 +212,21 @@ const projectDetails = {
 };
 
 const projectEvidence = {
+  carcure: {
+    liveDemo: "",
+    liveDemoReady: false,
+    repository: "https://github.com/lshbkrdz/carcure-frontend",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
+    caseStudy: "Current production mobile case study",
+    credentials: "No public reviewer account is provided. Production credentials and backend access remain private.",
+    stack: "Expo, React Native, TypeScript, Expo Router, EAS Build, AI vision workflow, internationalization, location-aware pricing",
+    deployment: "Android application prepared for Google Play closed testing. The production backend is maintained in a separate private repository.",
+    testStatus: "Frontend configuration, TypeScript, lint, and production Android build preparation verified in the application repository.",
+    lastUpdated: "2026-08-20",
+    architecture: "Expo React Native mobile client, multi-photo assessment flow, localized pricing and currency layer, private production API integration, EAS Android distribution"
+  },
   resolveai: {
     liveDemo: "",
     liveDemoReady: false,
@@ -362,7 +395,7 @@ function renderEvidence(projectId, variant = "card") {
   const videoValue = evidence.video
     ? `${evidence.video}${evidence.videoReady ? "" : " <span>placeholder URL</span>"}`
     : "Not available yet";
-  const helperText = projectId === "resolveai" || projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" || projectId === "reservehub" ? "" : "<span>Placeholders until real links are added</span>";
+  const helperText = projectId === "carcure" || projectId === "resolveai" || projectId === "stockflow" || projectId === "taskforge" || projectId === "apiwatch" || projectId === "clientdesk" || projectId === "bistroboard" || projectId === "reservehub" ? "" : "<span>Placeholders until real links are added</span>";
 
   return `
     <section class="evidence-box ${compact ? "evidence-box-compact" : ""}" aria-label="Project evidence">

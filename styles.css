@@ -681,6 +681,21 @@ h3 {
   background: rgba(4, 8, 13, 0.62);
 }
 
+.carcure-shot-grid {
+  min-height: 201px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  overflow: hidden;
+}
+
+.project-screenshot-preview .carcure-shot-grid img {
+  height: 201px;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: top center;
+}
+
 .uptime-ring {
   width: 128px;
   height: 128px;
