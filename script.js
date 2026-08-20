@@ -21,6 +21,25 @@ const projectDetails = {
       "Future improvements": "Public deployment, production object storage, live event transport, outbound email delivery, invitation acceptance and password-reset screens, Stripe checkout and billing portal flows, PDF ingestion, and staging verification for external AI providers."
     }
   },
+  humanizer: {
+    title: "Humanizer Studio",
+    type: "Local-First Writing Analysis and Rewrite Studio",
+    status: "Completed Portfolio Project",
+    sections: {
+      Problem: "Long-form narration can become repetitive, overly formal, and structurally predictable. Existing AI-detector scores are often presented without transparency, while aggressive rewriting can silently damage names, figures, dates, quotations, or the writer's intended meaning.",
+      Solution: "Humanizer Studio provides transparent style diagnostics and a controlled rewriting workspace for YouTube narration. It compares the original and result, explains mechanical patterns, creates a seeded rewrite profile, and rejects responses that fail preservation or meaningful-change checks.",
+      Architecture: "A React and TypeScript single-page application runs through Vite. Pure local analyzer modules calculate rhythm, structure, repetition, formulaic language, paragraph variation, spoken flow, and naturalness. A provider boundary supports both the deterministic offline rules engine and optional contextual AI rewriting.",
+      Frontend: "The responsive dark interface includes side-by-side before and after editors, naturalness and style scorecards, a run profile, mode and strength controls, history, analyzer issue cards, privacy settings, model presets, and clear provider or validation errors.",
+      "AI provider": "Official OpenAI endpoints use the Responses API with GPT-5.6 presets. Other compatible gateways can use the Chat Completions format. Long scripts are processed in context-aware chunks with neighboring context and one automatic repair retry when validation fails.",
+      Privacy: "The application works without network access in local mode. API keys remain in browser session storage and are deliberately excluded from persistent settings. Full script history is disabled by default.",
+      Preservation: "Names, exact numbers, dates, URLs, email addresses, quotations, and negations are protected and validated. Unsafe, unchanged, or insufficiently rewritten candidates are rejected instead of being presented as successful output.",
+      "Main features": ["Local style analyzer", "Before and after comparison", "Seeded rewrite profiles", "Narration modes and strength controls", "160 configurable phrase patterns", "Protected fact validation", "Context-aware AI chunking", "Automatic repair retry", "Cross-script novelty scoring", "Local history", "Session-only API keys", "Responsive interface"],
+      Testing: "The project has 76 passing Vitest tests. TypeScript checking, ESLint with zero warnings, and the Vite production build also pass.",
+      "Technology stack": "React, TypeScript, Vite, Vitest, ESLint, OpenAI Responses API, OpenAI-compatible Chat Completions, browser session storage, responsive CSS.",
+      "Technical decisions": "Analyzer percentages are explicitly labeled as heuristic style estimates rather than proof of authorship. Rewriting and scoring are separate systems, validation failures remain visible, and deterministic seeds make rewrite planning reproducible.",
+      "Future improvements": "A native desktop wrapper with operating-system keychain storage, semantic heading-aware chunking, sentence-level visual diffs, editable reference-style profiles, and scoring calibrated against a labeled narration corpus."
+    }
+  },
   stockflow: {
     title: "StockFlow",
     type: "Inventory and Order Management Platform",
@@ -189,6 +208,21 @@ const projectEvidence = {
     testStatus: "Backend: 9 Pytest tests passed. Ruff, frontend lint, Vitest, Next.js production build, migrations, seed reset, npm audit, desktop/mobile workflows, and browser-console checks passed.",
     lastUpdated: "2026-08-02",
     architecture: "Next.js support workspace, versioned FastAPI REST API, organization-scoped SQLAlchemy domain, JWT and rotating refresh tokens, knowledge retrieval and cited AI-draft pipeline, Celery/Redis background-work layer, PostgreSQL/pgvector deployment path"
+  },
+  humanizer: {
+    liveDemo: "",
+    liveDemoReady: false,
+    repository: "https://github.com/lshbkrdz/AI-text-humanizer",
+    repositoryReady: true,
+    video: "",
+    videoReady: false,
+    caseStudy: "Verified implementation case study",
+    credentials: "No account is required. Local mode works offline; an API key is optional for contextual AI rewriting.",
+    stack: "React, TypeScript, Vite, Vitest, ESLint, OpenAI Responses API, OpenAI-compatible Chat Completions, Responsive CSS",
+    deployment: "Source code and documentation are public on GitHub. The application is verified locally; a separate public app deployment has not been completed.",
+    testStatus: "76 Vitest tests passed. TypeScript type checking, ESLint with zero warnings, secret scan, and Vite production build passed.",
+    lastUpdated: "2026-08-20",
+    architecture: "React/Vite local-first workspace, pure heuristic analyzer, seeded rewrite planner, preservation and validation pipeline, offline rule provider, optional chunked AI provider, session-only API credentials, browser-local history"
   },
   stockflow: {
     liveDemo: "https://placeholder.example/stockflow-preview",
