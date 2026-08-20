@@ -191,23 +191,6 @@ const projectDetails = {
       "Sample records note": "ReserveHub includes seeded service, staff, availability, appointment, and activity records for local review.",
       "Future improvements": "Admin authentication, email confirmations, calendar export, staff-specific booking links, recurring availability editor, payment deposits, multi-location support, deployment pipeline, and test badges."
     }
-  },
-  autoflow: {
-    title: "AutoFlow",
-    type: "Business Automation Toolkit",
-    status: "Portfolio Project",
-    sections: {
-      Problem: "Manual file handling, data cleanup, reporting, and API synchronization can consume hours while introducing avoidable errors.",
-      Solution: "AutoFlow packages repeatable workflows for batch file processing, CSV validation, JSON transformation, automated reports, failed-task logs, API synchronization, and configurable error handling.",
-      Architecture: "Python scripts and reusable workflow modules process files, validate structured data, call REST APIs, generate reports, and write logs that can be reviewed after every run.",
-      "Main features": ["Batch file processing", "CSV validation", "JSON transformation", "Automated reports", "Failed-task logs", "API synchronization", "Configurable workflows", "Error handling"],
-      "Technology stack": "Python, REST APIs, CSV, JSON, Automation, Logging.",
-      "Technical decisions": "Workflow steps are designed as small reusable functions with clear inputs, outputs, retries, and failure states. Logs separate expected validation errors from unexpected runtime failures.",
-      Challenges: "Automation needs careful validation and logging because silent failures can create bigger operational problems than manual work.",
-      "Testing approach": "Tests would use fixture files for valid rows, invalid rows, malformed JSON, API failure responses, retry behavior, and report output checks.",
-      "Sample records note": "Workflow timestamps, row counts, transformed files, and report names are sample portfolio examples.",
-      "Future improvements": "A configuration UI, scheduled runs, email summaries, webhook triggers, cloud storage integrations, and richer reporting templates."
-    }
   }
 };
 
@@ -345,18 +328,6 @@ const projectEvidence = {
     testStatus: "Backend: python -m pytest, 11 passed. Frontend: npm run test, 4 passed. Production build completed with npm run build.",
     lastUpdated: "2026-07-29",
     architecture: "React/Vite booking frontend, FastAPI REST API, SQLite appointment data model, Pydantic validation, staff-service matching, availability slot engine, double-booking protection, activity timeline"
-  },
-  autoflow: {
-    liveDemo: "https://placeholder.example/autoflow-preview",
-    repository: "https://github.com/lshbkrdz/autoflow",
-    video: "https://placeholder.example/autoflow-walkthrough",
-    caseStudy: "Current portfolio case study",
-    credentials: "No login required for planned CLI/workflow previews.",
-    stack: "Python, REST APIs, CSV, JSON, Automation, Logging",
-    deployment: "Planned: repository workflows, runnable scripts, sample input/output fixtures, optional dashboard wrapper",
-    testStatus: "Planned automated tests: CSV fixtures, JSON transforms, API failure handling, retry behavior, report output",
-    lastUpdated: "2026-07-11",
-    architecture: "Configurable workflow steps, validation layer, API sync modules, report generation, structured logs"
   }
 };
 
